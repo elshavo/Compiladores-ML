@@ -3,152 +3,160 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> programa
-Rule 1     programa -> PROGRAMA ID PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
-Rule 2     vars_opcional -> VARS lista_decl_var
-Rule 3     vars_opcional -> empty
-Rule 4     funcs_opcional -> lista_funcs
-Rule 5     funcs_opcional -> empty
-Rule 6     lista_decl_var -> decl_var
-Rule 7     lista_decl_var -> decl_var lista_decl_var
-Rule 8     decl_var -> ids DOSPTOS tipo PTOCOMA
-Rule 9     ids -> ID
-Rule 10    ids -> ids COMA ID
-Rule 11    tipo -> ENTERO
-Rule 12    tipo -> FLOTANTE
-Rule 13    lista_funcs -> func_def
-Rule 14    lista_funcs -> func_def lista_funcs
-Rule 15    func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
-Rule 16    tipo_retorno -> tipo
-Rule 17    tipo_retorno -> NULA
-Rule 18    params -> lista_params
-Rule 19    params -> empty
-Rule 20    lista_params -> ID DOSPTOS tipo
-Rule 21    lista_params -> lista_params COMA ID DOSPTOS tipo
-Rule 22    cuerpo -> LBRACE lista_estatuto RBRACE
-Rule 23    lista_estatuto -> estatuto lista_estatuto
-Rule 24    lista_estatuto -> empty
-Rule 25    estatuto -> asigna
-Rule 26    estatuto -> condicion
-Rule 27    estatuto -> ciclo
-Rule 28    estatuto -> imprime
-Rule 29    estatuto -> llamada PTOCOMA
-Rule 30    estatuto -> cuerpo
-Rule 31    asigna -> ID ASIG expresion PTOCOMA
-Rule 32    imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA
-Rule 33    lista_imprime -> item_imprime
-Rule 34    lista_imprime -> lista_imprime COMA item_imprime
-Rule 35    item_imprime -> expresion
-Rule 36    item_imprime -> LETRERO
-Rule 37    item_imprime -> LETRERO_KW
-Rule 38    condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA
-Rule 39    condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
-Rule 40    ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
-Rule 41    llamada -> ID LPAREN RPAREN
-Rule 42    llamada -> ID LPAREN lista_args RPAREN
-Rule 43    lista_args -> expresion
-Rule 44    lista_args -> lista_args COMA expresion
-Rule 45    expresion -> exp
-Rule 46    expresion -> exp OPREL exp
-Rule 47    OPREL -> MAYOR
-Rule 48    OPREL -> MENOR
-Rule 49    OPREL -> DIF
-Rule 50    OPREL -> IGUALDAD
-Rule 51    OPREL -> MAYORIG
-Rule 52    OPREL -> MENORIG
-Rule 53    exp -> termino
-Rule 54    exp -> exp MAS termino
-Rule 55    exp -> exp MENOS termino
-Rule 56    termino -> factor
-Rule 57    termino -> termino POR factor
-Rule 58    termino -> termino DIV factor
-Rule 59    factor -> LPAREN expresion RPAREN
-Rule 60    factor -> MAS factor
-Rule 61    factor -> MENOS factor
-Rule 62    factor -> llamada
-Rule 63    factor -> ID
-Rule 64    factor -> cte
-Rule 65    cte -> CTE_ENT
-Rule 66    cte -> CTE_FLOT
-Rule 67    empty -> <empty>
+Rule 1     programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
+Rule 2     pn_programa_inicio -> <empty>
+Rule 3     vars_opcional -> VARS lista_decl_var
+Rule 4     vars_opcional -> empty
+Rule 5     funcs_opcional -> lista_funcs
+Rule 6     funcs_opcional -> empty
+Rule 7     lista_decl_var -> decl_var
+Rule 8     lista_decl_var -> decl_var lista_decl_var
+Rule 9     decl_var -> ids DOSPTOS tipo PTOCOMA
+Rule 10    ids -> ID
+Rule 11    ids -> ids COMA ID
+Rule 12    tipo -> ENTERO
+Rule 13    tipo -> FLOTANTE
+Rule 14    lista_funcs -> func_def
+Rule 15    lista_funcs -> func_def lista_funcs
+Rule 16    func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
+Rule 17    pn_func_inicio -> <empty>
+Rule 18    pn_func_fin -> <empty>
+Rule 19    tipo_retorno -> tipo
+Rule 20    tipo_retorno -> NULA
+Rule 21    params -> lista_params
+Rule 22    params -> empty
+Rule 23    lista_params -> ID DOSPTOS tipo pn_param
+Rule 24    lista_params -> lista_params COMA ID DOSPTOS tipo pn_param
+Rule 25    pn_param -> <empty>
+Rule 26    cuerpo -> LBRACE lista_estatuto RBRACE
+Rule 27    lista_estatuto -> estatuto lista_estatuto
+Rule 28    lista_estatuto -> empty
+Rule 29    estatuto -> asigna
+Rule 30    estatuto -> condicion
+Rule 31    estatuto -> ciclo
+Rule 32    estatuto -> imprime
+Rule 33    estatuto -> llamada PTOCOMA
+Rule 34    estatuto -> cuerpo
+Rule 35    asigna -> ID ASIG expresion PTOCOMA
+Rule 36    imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA
+Rule 37    lista_imprime -> item_imprime
+Rule 38    lista_imprime -> lista_imprime COMA item_imprime
+Rule 39    item_imprime -> expresion
+Rule 40    item_imprime -> LETRERO
+Rule 41    item_imprime -> LETRERO_KW
+Rule 42    condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA
+Rule 43    condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
+Rule 44    ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
+Rule 45    llamada -> ID LPAREN RPAREN
+Rule 46    llamada -> ID LPAREN lista_args RPAREN
+Rule 47    lista_args -> expresion
+Rule 48    lista_args -> lista_args COMA expresion
+Rule 49    expresion -> exp
+Rule 50    expresion -> exp OPREL exp
+Rule 51    OPREL -> MAYOR
+Rule 52    OPREL -> MENOR
+Rule 53    OPREL -> DIF
+Rule 54    OPREL -> IGUALDAD
+Rule 55    OPREL -> MAYORIG
+Rule 56    OPREL -> MENORIG
+Rule 57    exp -> termino
+Rule 58    exp -> exp MAS termino
+Rule 59    exp -> exp MENOS termino
+Rule 60    termino -> factor
+Rule 61    termino -> termino POR factor
+Rule 62    termino -> termino DIV factor
+Rule 63    factor -> LPAREN expresion RPAREN
+Rule 64    factor -> MAS factor
+Rule 65    factor -> MENOS factor
+Rule 66    factor -> llamada
+Rule 67    factor -> ID
+Rule 68    factor -> cte
+Rule 69    cte -> CTE_ENT
+Rule 70    cte -> CTE_FLOT
+Rule 71    empty -> <empty>
 
 Terminals, with rules where they appear
 
-ASIG                 : 31
-COMA                 : 10 21 34 44
-CTE_ENT              : 65
-CTE_FLOT             : 66
-DIF                  : 49
-DIV                  : 58
-DOSPTOS              : 8 20 21
-ENTERO               : 11
-ESCRIBE              : 32
+ASIG                 : 35
+COMA                 : 11 24 38 48
+CTE_ENT              : 69
+CTE_FLOT             : 70
+DIF                  : 53
+DIV                  : 62
+DOSPTOS              : 9 23 24
+ENTERO               : 12
+ESCRIBE              : 36
 FIN                  : 1
-FLOTANTE             : 12
-HAZ                  : 40
-ID                   : 1 9 10 15 20 21 31 41 42 63
-IGUALDAD             : 50
+FLOTANTE             : 13
+HAZ                  : 44
+ID                   : 1 10 11 16 23 24 35 45 46 67
+IGUALDAD             : 54
 INICIO               : 1
-LBRACE               : 15 22
-LETRERO              : 36
-LETRERO_KW           : 37
-LPAREN               : 15 32 38 39 40 41 42 59
-MAS                  : 54 60
-MAYOR                : 47
-MAYORIG              : 51
-MENOR                : 48
-MENORIG              : 52
-MENOS                : 55 61
-MIENTRAS             : 40
-NULA                 : 17
-POR                  : 57
+LBRACE               : 16 26
+LETRERO              : 40
+LETRERO_KW           : 41
+LPAREN               : 16 36 42 43 44 45 46 63
+MAS                  : 58 64
+MAYOR                : 51
+MAYORIG              : 55
+MENOR                : 52
+MENORIG              : 56
+MENOS                : 59 65
+MIENTRAS             : 44
+NULA                 : 20
+POR                  : 61
 PROGRAMA             : 1
-PTOCOMA              : 1 8 15 29 31 32 38 39 40
-RBRACE               : 15 22
-RPAREN               : 15 32 38 39 40 41 42 59
-SI                   : 38 39
-SINO                 : 39
-VARS                 : 2
+PTOCOMA              : 1 9 16 33 35 36 42 43 44
+RBRACE               : 16 26
+RPAREN               : 16 36 42 43 44 45 46 63
+SI                   : 42 43
+SINO                 : 43
+VARS                 : 3
 error                : 
 
 Nonterminals, with rules where they appear
 
-OPREL                : 46
-asigna               : 25
-ciclo                : 27
-condicion            : 26
-cte                  : 64
-cuerpo               : 1 15 30 38 39 39 40
-decl_var             : 6 7
-empty                : 3 5 19 24
-estatuto             : 23
-exp                  : 45 46 46 54 55
-expresion            : 31 35 38 39 40 43 44 59
-factor               : 56 57 58 60 61
-func_def             : 13 14
+OPREL                : 50
+asigna               : 29
+ciclo                : 31
+condicion            : 30
+cte                  : 68
+cuerpo               : 1 16 34 42 43 43 44
+decl_var             : 7 8
+empty                : 4 6 22 28
+estatuto             : 27
+exp                  : 49 50 50 58 59
+expresion            : 35 39 42 43 44 47 48 63
+factor               : 60 61 62 64 65
+func_def             : 14 15
 funcs_opcional       : 1
-ids                  : 8 10
-imprime              : 28
-item_imprime         : 33 34
-lista_args           : 42 44
-lista_decl_var       : 2 7
-lista_estatuto       : 22 23
-lista_funcs          : 4 14
-lista_imprime        : 32 34
-lista_params         : 18 21
-llamada              : 29 62
-params               : 15
+ids                  : 9 11
+imprime              : 32
+item_imprime         : 37 38
+lista_args           : 46 48
+lista_decl_var       : 3 8
+lista_estatuto       : 26 27
+lista_funcs          : 5 15
+lista_imprime        : 36 38
+lista_params         : 21 24
+llamada              : 33 66
+params               : 16
+pn_func_fin          : 16
+pn_func_inicio       : 16
+pn_param             : 23 24
+pn_programa_inicio   : 1
 programa             : 0
-termino              : 53 54 55 57 58
-tipo                 : 8 16 20 21
-tipo_retorno         : 15
-vars_opcional        : 1 15
+termino              : 57 58 59 61 62
+tipo                 : 9 19 23 24
+tipo_retorno         : 16
+vars_opcional        : 1 16
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . programa
-    (1) programa -> . PROGRAMA ID PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
+    (1) programa -> . PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
 
     PROGRAMA        shift and go to state 2
 
@@ -162,1835 +170,1882 @@ state 1
 
 state 2
 
-    (1) programa -> PROGRAMA . ID PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
+    (1) programa -> PROGRAMA . ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
 
     ID              shift and go to state 3
 
 
 state 3
 
-    (1) programa -> PROGRAMA ID . PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
+    (1) programa -> PROGRAMA ID . pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
+    (2) pn_programa_inicio -> .
 
-    PTOCOMA         shift and go to state 4
+    PTOCOMA         reduce using rule 2 (pn_programa_inicio -> .)
 
+    pn_programa_inicio             shift and go to state 4
 
 state 4
 
-    (1) programa -> PROGRAMA ID PTOCOMA . vars_opcional funcs_opcional INICIO cuerpo FIN
-    (2) vars_opcional -> . VARS lista_decl_var
-    (3) vars_opcional -> . empty
-    (67) empty -> .
+    (1) programa -> PROGRAMA ID pn_programa_inicio . PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN
 
-    VARS            shift and go to state 6
-    NULA            reduce using rule 67 (empty -> .)
-    ENTERO          reduce using rule 67 (empty -> .)
-    FLOTANTE        reduce using rule 67 (empty -> .)
-    INICIO          reduce using rule 67 (empty -> .)
+    PTOCOMA         shift and go to state 5
 
-    vars_opcional                  shift and go to state 5
-    empty                          shift and go to state 7
 
 state 5
 
-    (1) programa -> PROGRAMA ID PTOCOMA vars_opcional . funcs_opcional INICIO cuerpo FIN
-    (4) funcs_opcional -> . lista_funcs
-    (5) funcs_opcional -> . empty
-    (13) lista_funcs -> . func_def
-    (14) lista_funcs -> . func_def lista_funcs
-    (67) empty -> .
-    (15) func_def -> . tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
-    (16) tipo_retorno -> . tipo
-    (17) tipo_retorno -> . NULA
-    (11) tipo -> . ENTERO
-    (12) tipo -> . FLOTANTE
+    (1) programa -> PROGRAMA ID pn_programa_inicio PTOCOMA . vars_opcional funcs_opcional INICIO cuerpo FIN
+    (3) vars_opcional -> . VARS lista_decl_var
+    (4) vars_opcional -> . empty
+    (71) empty -> .
 
-    INICIO          reduce using rule 67 (empty -> .)
-    NULA            shift and go to state 14
-    ENTERO          shift and go to state 15
-    FLOTANTE        shift and go to state 16
+    VARS            shift and go to state 7
+    NULA            reduce using rule 71 (empty -> .)
+    ENTERO          reduce using rule 71 (empty -> .)
+    FLOTANTE        reduce using rule 71 (empty -> .)
+    INICIO          reduce using rule 71 (empty -> .)
 
-    funcs_opcional                 shift and go to state 8
-    lista_funcs                    shift and go to state 9
-    empty                          shift and go to state 10
-    func_def                       shift and go to state 11
-    tipo_retorno                   shift and go to state 12
-    tipo                           shift and go to state 13
+    vars_opcional                  shift and go to state 6
+    empty                          shift and go to state 8
 
 state 6
 
-    (2) vars_opcional -> VARS . lista_decl_var
-    (6) lista_decl_var -> . decl_var
-    (7) lista_decl_var -> . decl_var lista_decl_var
-    (8) decl_var -> . ids DOSPTOS tipo PTOCOMA
-    (9) ids -> . ID
-    (10) ids -> . ids COMA ID
+    (1) programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional . funcs_opcional INICIO cuerpo FIN
+    (5) funcs_opcional -> . lista_funcs
+    (6) funcs_opcional -> . empty
+    (14) lista_funcs -> . func_def
+    (15) lista_funcs -> . func_def lista_funcs
+    (71) empty -> .
+    (16) func_def -> . tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
+    (19) tipo_retorno -> . tipo
+    (20) tipo_retorno -> . NULA
+    (12) tipo -> . ENTERO
+    (13) tipo -> . FLOTANTE
 
-    ID              shift and go to state 20
+    INICIO          reduce using rule 71 (empty -> .)
+    NULA            shift and go to state 15
+    ENTERO          shift and go to state 16
+    FLOTANTE        shift and go to state 17
 
-    lista_decl_var                 shift and go to state 17
-    decl_var                       shift and go to state 18
-    ids                            shift and go to state 19
+    funcs_opcional                 shift and go to state 9
+    lista_funcs                    shift and go to state 10
+    empty                          shift and go to state 11
+    func_def                       shift and go to state 12
+    tipo_retorno                   shift and go to state 13
+    tipo                           shift and go to state 14
 
 state 7
 
-    (3) vars_opcional -> empty .
+    (3) vars_opcional -> VARS . lista_decl_var
+    (7) lista_decl_var -> . decl_var
+    (8) lista_decl_var -> . decl_var lista_decl_var
+    (9) decl_var -> . ids DOSPTOS tipo PTOCOMA
+    (10) ids -> . ID
+    (11) ids -> . ids COMA ID
 
-    NULA            reduce using rule 3 (vars_opcional -> empty .)
-    ENTERO          reduce using rule 3 (vars_opcional -> empty .)
-    FLOTANTE        reduce using rule 3 (vars_opcional -> empty .)
-    INICIO          reduce using rule 3 (vars_opcional -> empty .)
-    LBRACE          reduce using rule 3 (vars_opcional -> empty .)
+    ID              shift and go to state 21
 
+    lista_decl_var                 shift and go to state 18
+    decl_var                       shift and go to state 19
+    ids                            shift and go to state 20
 
 state 8
 
-    (1) programa -> PROGRAMA ID PTOCOMA vars_opcional funcs_opcional . INICIO cuerpo FIN
+    (4) vars_opcional -> empty .
 
-    INICIO          shift and go to state 21
+    NULA            reduce using rule 4 (vars_opcional -> empty .)
+    ENTERO          reduce using rule 4 (vars_opcional -> empty .)
+    FLOTANTE        reduce using rule 4 (vars_opcional -> empty .)
+    INICIO          reduce using rule 4 (vars_opcional -> empty .)
+    LBRACE          reduce using rule 4 (vars_opcional -> empty .)
 
 
 state 9
 
-    (4) funcs_opcional -> lista_funcs .
+    (1) programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional . INICIO cuerpo FIN
 
-    INICIO          reduce using rule 4 (funcs_opcional -> lista_funcs .)
+    INICIO          shift and go to state 22
 
 
 state 10
 
-    (5) funcs_opcional -> empty .
+    (5) funcs_opcional -> lista_funcs .
 
-    INICIO          reduce using rule 5 (funcs_opcional -> empty .)
+    INICIO          reduce using rule 5 (funcs_opcional -> lista_funcs .)
 
 
 state 11
 
-    (13) lista_funcs -> func_def .
-    (14) lista_funcs -> func_def . lista_funcs
-    (13) lista_funcs -> . func_def
-    (14) lista_funcs -> . func_def lista_funcs
-    (15) func_def -> . tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
-    (16) tipo_retorno -> . tipo
-    (17) tipo_retorno -> . NULA
-    (11) tipo -> . ENTERO
-    (12) tipo -> . FLOTANTE
+    (6) funcs_opcional -> empty .
 
-    INICIO          reduce using rule 13 (lista_funcs -> func_def .)
-    NULA            shift and go to state 14
-    ENTERO          shift and go to state 15
-    FLOTANTE        shift and go to state 16
+    INICIO          reduce using rule 6 (funcs_opcional -> empty .)
 
-    func_def                       shift and go to state 11
-    lista_funcs                    shift and go to state 22
-    tipo_retorno                   shift and go to state 12
-    tipo                           shift and go to state 13
 
 state 12
 
-    (15) func_def -> tipo_retorno . ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
+    (14) lista_funcs -> func_def .
+    (15) lista_funcs -> func_def . lista_funcs
+    (14) lista_funcs -> . func_def
+    (15) lista_funcs -> . func_def lista_funcs
+    (16) func_def -> . tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
+    (19) tipo_retorno -> . tipo
+    (20) tipo_retorno -> . NULA
+    (12) tipo -> . ENTERO
+    (13) tipo -> . FLOTANTE
 
-    ID              shift and go to state 23
+    INICIO          reduce using rule 14 (lista_funcs -> func_def .)
+    NULA            shift and go to state 15
+    ENTERO          shift and go to state 16
+    FLOTANTE        shift and go to state 17
 
+    func_def                       shift and go to state 12
+    lista_funcs                    shift and go to state 23
+    tipo_retorno                   shift and go to state 13
+    tipo                           shift and go to state 14
 
 state 13
 
-    (16) tipo_retorno -> tipo .
+    (16) func_def -> tipo_retorno . pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
+    (17) pn_func_inicio -> .
 
-    ID              reduce using rule 16 (tipo_retorno -> tipo .)
+    ID              reduce using rule 17 (pn_func_inicio -> .)
 
+    pn_func_inicio                 shift and go to state 24
 
 state 14
 
-    (17) tipo_retorno -> NULA .
+    (19) tipo_retorno -> tipo .
 
-    ID              reduce using rule 17 (tipo_retorno -> NULA .)
+    ID              reduce using rule 19 (tipo_retorno -> tipo .)
 
 
 state 15
 
-    (11) tipo -> ENTERO .
+    (20) tipo_retorno -> NULA .
 
-    ID              reduce using rule 11 (tipo -> ENTERO .)
-    PTOCOMA         reduce using rule 11 (tipo -> ENTERO .)
-    COMA            reduce using rule 11 (tipo -> ENTERO .)
-    RPAREN          reduce using rule 11 (tipo -> ENTERO .)
+    ID              reduce using rule 20 (tipo_retorno -> NULA .)
 
 
 state 16
 
-    (12) tipo -> FLOTANTE .
+    (12) tipo -> ENTERO .
 
-    ID              reduce using rule 12 (tipo -> FLOTANTE .)
-    PTOCOMA         reduce using rule 12 (tipo -> FLOTANTE .)
-    COMA            reduce using rule 12 (tipo -> FLOTANTE .)
-    RPAREN          reduce using rule 12 (tipo -> FLOTANTE .)
+    ID              reduce using rule 12 (tipo -> ENTERO .)
+    PTOCOMA         reduce using rule 12 (tipo -> ENTERO .)
+    COMA            reduce using rule 12 (tipo -> ENTERO .)
+    RPAREN          reduce using rule 12 (tipo -> ENTERO .)
 
 
 state 17
 
-    (2) vars_opcional -> VARS lista_decl_var .
+    (13) tipo -> FLOTANTE .
 
-    NULA            reduce using rule 2 (vars_opcional -> VARS lista_decl_var .)
-    ENTERO          reduce using rule 2 (vars_opcional -> VARS lista_decl_var .)
-    FLOTANTE        reduce using rule 2 (vars_opcional -> VARS lista_decl_var .)
-    INICIO          reduce using rule 2 (vars_opcional -> VARS lista_decl_var .)
-    LBRACE          reduce using rule 2 (vars_opcional -> VARS lista_decl_var .)
+    ID              reduce using rule 13 (tipo -> FLOTANTE .)
+    PTOCOMA         reduce using rule 13 (tipo -> FLOTANTE .)
+    COMA            reduce using rule 13 (tipo -> FLOTANTE .)
+    RPAREN          reduce using rule 13 (tipo -> FLOTANTE .)
 
 
 state 18
 
-    (6) lista_decl_var -> decl_var .
-    (7) lista_decl_var -> decl_var . lista_decl_var
-    (6) lista_decl_var -> . decl_var
-    (7) lista_decl_var -> . decl_var lista_decl_var
-    (8) decl_var -> . ids DOSPTOS tipo PTOCOMA
-    (9) ids -> . ID
-    (10) ids -> . ids COMA ID
+    (3) vars_opcional -> VARS lista_decl_var .
 
-    NULA            reduce using rule 6 (lista_decl_var -> decl_var .)
-    ENTERO          reduce using rule 6 (lista_decl_var -> decl_var .)
-    FLOTANTE        reduce using rule 6 (lista_decl_var -> decl_var .)
-    INICIO          reduce using rule 6 (lista_decl_var -> decl_var .)
-    LBRACE          reduce using rule 6 (lista_decl_var -> decl_var .)
-    ID              shift and go to state 20
+    NULA            reduce using rule 3 (vars_opcional -> VARS lista_decl_var .)
+    ENTERO          reduce using rule 3 (vars_opcional -> VARS lista_decl_var .)
+    FLOTANTE        reduce using rule 3 (vars_opcional -> VARS lista_decl_var .)
+    INICIO          reduce using rule 3 (vars_opcional -> VARS lista_decl_var .)
+    LBRACE          reduce using rule 3 (vars_opcional -> VARS lista_decl_var .)
 
-    decl_var                       shift and go to state 18
-    lista_decl_var                 shift and go to state 24
-    ids                            shift and go to state 19
 
 state 19
 
-    (8) decl_var -> ids . DOSPTOS tipo PTOCOMA
-    (10) ids -> ids . COMA ID
+    (7) lista_decl_var -> decl_var .
+    (8) lista_decl_var -> decl_var . lista_decl_var
+    (7) lista_decl_var -> . decl_var
+    (8) lista_decl_var -> . decl_var lista_decl_var
+    (9) decl_var -> . ids DOSPTOS tipo PTOCOMA
+    (10) ids -> . ID
+    (11) ids -> . ids COMA ID
 
-    DOSPTOS         shift and go to state 25
-    COMA            shift and go to state 26
+    NULA            reduce using rule 7 (lista_decl_var -> decl_var .)
+    ENTERO          reduce using rule 7 (lista_decl_var -> decl_var .)
+    FLOTANTE        reduce using rule 7 (lista_decl_var -> decl_var .)
+    INICIO          reduce using rule 7 (lista_decl_var -> decl_var .)
+    LBRACE          reduce using rule 7 (lista_decl_var -> decl_var .)
+    ID              shift and go to state 21
 
+    decl_var                       shift and go to state 19
+    lista_decl_var                 shift and go to state 25
+    ids                            shift and go to state 20
 
 state 20
 
-    (9) ids -> ID .
+    (9) decl_var -> ids . DOSPTOS tipo PTOCOMA
+    (11) ids -> ids . COMA ID
 
-    DOSPTOS         reduce using rule 9 (ids -> ID .)
-    COMA            reduce using rule 9 (ids -> ID .)
+    DOSPTOS         shift and go to state 26
+    COMA            shift and go to state 27
 
 
 state 21
 
-    (1) programa -> PROGRAMA ID PTOCOMA vars_opcional funcs_opcional INICIO . cuerpo FIN
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
+    (10) ids -> ID .
 
-    LBRACE          shift and go to state 28
+    DOSPTOS         reduce using rule 10 (ids -> ID .)
+    COMA            reduce using rule 10 (ids -> ID .)
 
-    cuerpo                         shift and go to state 27
 
 state 22
 
-    (14) lista_funcs -> func_def lista_funcs .
+    (1) programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO . cuerpo FIN
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    INICIO          reduce using rule 14 (lista_funcs -> func_def lista_funcs .)
+    LBRACE          shift and go to state 29
 
+    cuerpo                         shift and go to state 28
 
 state 23
 
-    (15) func_def -> tipo_retorno ID . LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
+    (15) lista_funcs -> func_def lista_funcs .
 
-    LPAREN          shift and go to state 29
+    INICIO          reduce using rule 15 (lista_funcs -> func_def lista_funcs .)
 
 
 state 24
 
-    (7) lista_decl_var -> decl_var lista_decl_var .
+    (16) func_def -> tipo_retorno pn_func_inicio . ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
 
-    NULA            reduce using rule 7 (lista_decl_var -> decl_var lista_decl_var .)
-    ENTERO          reduce using rule 7 (lista_decl_var -> decl_var lista_decl_var .)
-    FLOTANTE        reduce using rule 7 (lista_decl_var -> decl_var lista_decl_var .)
-    INICIO          reduce using rule 7 (lista_decl_var -> decl_var lista_decl_var .)
-    LBRACE          reduce using rule 7 (lista_decl_var -> decl_var lista_decl_var .)
+    ID              shift and go to state 30
 
 
 state 25
 
-    (8) decl_var -> ids DOSPTOS . tipo PTOCOMA
-    (11) tipo -> . ENTERO
-    (12) tipo -> . FLOTANTE
+    (8) lista_decl_var -> decl_var lista_decl_var .
 
-    ENTERO          shift and go to state 15
-    FLOTANTE        shift and go to state 16
+    NULA            reduce using rule 8 (lista_decl_var -> decl_var lista_decl_var .)
+    ENTERO          reduce using rule 8 (lista_decl_var -> decl_var lista_decl_var .)
+    FLOTANTE        reduce using rule 8 (lista_decl_var -> decl_var lista_decl_var .)
+    INICIO          reduce using rule 8 (lista_decl_var -> decl_var lista_decl_var .)
+    LBRACE          reduce using rule 8 (lista_decl_var -> decl_var lista_decl_var .)
 
-    tipo                           shift and go to state 30
 
 state 26
 
-    (10) ids -> ids COMA . ID
+    (9) decl_var -> ids DOSPTOS . tipo PTOCOMA
+    (12) tipo -> . ENTERO
+    (13) tipo -> . FLOTANTE
 
-    ID              shift and go to state 31
+    ENTERO          shift and go to state 16
+    FLOTANTE        shift and go to state 17
 
+    tipo                           shift and go to state 31
 
 state 27
 
-    (1) programa -> PROGRAMA ID PTOCOMA vars_opcional funcs_opcional INICIO cuerpo . FIN
+    (11) ids -> ids COMA . ID
 
-    FIN             shift and go to state 32
+    ID              shift and go to state 32
 
 
 state 28
 
-    (22) cuerpo -> LBRACE . lista_estatuto RBRACE
-    (23) lista_estatuto -> . estatuto lista_estatuto
-    (24) lista_estatuto -> . empty
-    (25) estatuto -> . asigna
-    (26) estatuto -> . condicion
-    (27) estatuto -> . ciclo
-    (28) estatuto -> . imprime
-    (29) estatuto -> . llamada PTOCOMA
-    (30) estatuto -> . cuerpo
-    (67) empty -> .
-    (31) asigna -> . ID ASIG expresion PTOCOMA
-    (38) condicion -> . SI LPAREN expresion RPAREN cuerpo PTOCOMA
-    (39) condicion -> . SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
-    (40) ciclo -> . MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
-    (32) imprime -> . ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
+    (1) programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo . FIN
 
-    RBRACE          reduce using rule 67 (empty -> .)
-    ID              shift and go to state 42
-    SI              shift and go to state 43
-    MIENTRAS        shift and go to state 44
-    ESCRIBE         shift and go to state 45
-    LBRACE          shift and go to state 28
+    FIN             shift and go to state 33
 
-    lista_estatuto                 shift and go to state 33
-    estatuto                       shift and go to state 34
-    empty                          shift and go to state 35
-    asigna                         shift and go to state 36
-    condicion                      shift and go to state 37
-    ciclo                          shift and go to state 38
-    imprime                        shift and go to state 39
-    llamada                        shift and go to state 40
-    cuerpo                         shift and go to state 41
 
 state 29
 
-    (15) func_def -> tipo_retorno ID LPAREN . params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
-    (18) params -> . lista_params
-    (19) params -> . empty
-    (20) lista_params -> . ID DOSPTOS tipo
-    (21) lista_params -> . lista_params COMA ID DOSPTOS tipo
-    (67) empty -> .
+    (26) cuerpo -> LBRACE . lista_estatuto RBRACE
+    (27) lista_estatuto -> . estatuto lista_estatuto
+    (28) lista_estatuto -> . empty
+    (29) estatuto -> . asigna
+    (30) estatuto -> . condicion
+    (31) estatuto -> . ciclo
+    (32) estatuto -> . imprime
+    (33) estatuto -> . llamada PTOCOMA
+    (34) estatuto -> . cuerpo
+    (71) empty -> .
+    (35) asigna -> . ID ASIG expresion PTOCOMA
+    (42) condicion -> . SI LPAREN expresion RPAREN cuerpo PTOCOMA
+    (43) condicion -> . SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
+    (44) ciclo -> . MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
+    (36) imprime -> . ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    ID              shift and go to state 46
-    RPAREN          reduce using rule 67 (empty -> .)
+    RBRACE          reduce using rule 71 (empty -> .)
+    ID              shift and go to state 43
+    SI              shift and go to state 44
+    MIENTRAS        shift and go to state 45
+    ESCRIBE         shift and go to state 46
+    LBRACE          shift and go to state 29
 
-    params                         shift and go to state 47
-    lista_params                   shift and go to state 48
-    empty                          shift and go to state 49
+    lista_estatuto                 shift and go to state 34
+    estatuto                       shift and go to state 35
+    empty                          shift and go to state 36
+    asigna                         shift and go to state 37
+    condicion                      shift and go to state 38
+    ciclo                          shift and go to state 39
+    imprime                        shift and go to state 40
+    llamada                        shift and go to state 41
+    cuerpo                         shift and go to state 42
 
 state 30
 
-    (8) decl_var -> ids DOSPTOS tipo . PTOCOMA
+    (16) func_def -> tipo_retorno pn_func_inicio ID . LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
 
-    PTOCOMA         shift and go to state 50
+    LPAREN          shift and go to state 47
 
 
 state 31
 
-    (10) ids -> ids COMA ID .
+    (9) decl_var -> ids DOSPTOS tipo . PTOCOMA
 
-    DOSPTOS         reduce using rule 10 (ids -> ids COMA ID .)
-    COMA            reduce using rule 10 (ids -> ids COMA ID .)
+    PTOCOMA         shift and go to state 48
 
 
 state 32
 
-    (1) programa -> PROGRAMA ID PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN .
+    (11) ids -> ids COMA ID .
 
-    $end            reduce using rule 1 (programa -> PROGRAMA ID PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN .)
+    DOSPTOS         reduce using rule 11 (ids -> ids COMA ID .)
+    COMA            reduce using rule 11 (ids -> ids COMA ID .)
 
 
 state 33
 
-    (22) cuerpo -> LBRACE lista_estatuto . RBRACE
+    (1) programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN .
 
-    RBRACE          shift and go to state 51
+    $end            reduce using rule 1 (programa -> PROGRAMA ID pn_programa_inicio PTOCOMA vars_opcional funcs_opcional INICIO cuerpo FIN .)
 
 
 state 34
 
-    (23) lista_estatuto -> estatuto . lista_estatuto
-    (23) lista_estatuto -> . estatuto lista_estatuto
-    (24) lista_estatuto -> . empty
-    (25) estatuto -> . asigna
-    (26) estatuto -> . condicion
-    (27) estatuto -> . ciclo
-    (28) estatuto -> . imprime
-    (29) estatuto -> . llamada PTOCOMA
-    (30) estatuto -> . cuerpo
-    (67) empty -> .
-    (31) asigna -> . ID ASIG expresion PTOCOMA
-    (38) condicion -> . SI LPAREN expresion RPAREN cuerpo PTOCOMA
-    (39) condicion -> . SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
-    (40) ciclo -> . MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
-    (32) imprime -> . ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
+    (26) cuerpo -> LBRACE lista_estatuto . RBRACE
 
-    RBRACE          reduce using rule 67 (empty -> .)
-    ID              shift and go to state 42
-    SI              shift and go to state 43
-    MIENTRAS        shift and go to state 44
-    ESCRIBE         shift and go to state 45
-    LBRACE          shift and go to state 28
+    RBRACE          shift and go to state 49
 
-    estatuto                       shift and go to state 34
-    lista_estatuto                 shift and go to state 52
-    empty                          shift and go to state 35
-    asigna                         shift and go to state 36
-    condicion                      shift and go to state 37
-    ciclo                          shift and go to state 38
-    imprime                        shift and go to state 39
-    llamada                        shift and go to state 40
-    cuerpo                         shift and go to state 41
 
 state 35
 
-    (24) lista_estatuto -> empty .
+    (27) lista_estatuto -> estatuto . lista_estatuto
+    (27) lista_estatuto -> . estatuto lista_estatuto
+    (28) lista_estatuto -> . empty
+    (29) estatuto -> . asigna
+    (30) estatuto -> . condicion
+    (31) estatuto -> . ciclo
+    (32) estatuto -> . imprime
+    (33) estatuto -> . llamada PTOCOMA
+    (34) estatuto -> . cuerpo
+    (71) empty -> .
+    (35) asigna -> . ID ASIG expresion PTOCOMA
+    (42) condicion -> . SI LPAREN expresion RPAREN cuerpo PTOCOMA
+    (43) condicion -> . SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
+    (44) ciclo -> . MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
+    (36) imprime -> . ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    RBRACE          reduce using rule 24 (lista_estatuto -> empty .)
+    RBRACE          reduce using rule 71 (empty -> .)
+    ID              shift and go to state 43
+    SI              shift and go to state 44
+    MIENTRAS        shift and go to state 45
+    ESCRIBE         shift and go to state 46
+    LBRACE          shift and go to state 29
 
+    estatuto                       shift and go to state 35
+    lista_estatuto                 shift and go to state 50
+    empty                          shift and go to state 36
+    asigna                         shift and go to state 37
+    condicion                      shift and go to state 38
+    ciclo                          shift and go to state 39
+    imprime                        shift and go to state 40
+    llamada                        shift and go to state 41
+    cuerpo                         shift and go to state 42
 
 state 36
 
-    (25) estatuto -> asigna .
+    (28) lista_estatuto -> empty .
 
-    ID              reduce using rule 25 (estatuto -> asigna .)
-    SI              reduce using rule 25 (estatuto -> asigna .)
-    MIENTRAS        reduce using rule 25 (estatuto -> asigna .)
-    ESCRIBE         reduce using rule 25 (estatuto -> asigna .)
-    LBRACE          reduce using rule 25 (estatuto -> asigna .)
-    RBRACE          reduce using rule 25 (estatuto -> asigna .)
+    RBRACE          reduce using rule 28 (lista_estatuto -> empty .)
 
 
 state 37
 
-    (26) estatuto -> condicion .
+    (29) estatuto -> asigna .
 
-    ID              reduce using rule 26 (estatuto -> condicion .)
-    SI              reduce using rule 26 (estatuto -> condicion .)
-    MIENTRAS        reduce using rule 26 (estatuto -> condicion .)
-    ESCRIBE         reduce using rule 26 (estatuto -> condicion .)
-    LBRACE          reduce using rule 26 (estatuto -> condicion .)
-    RBRACE          reduce using rule 26 (estatuto -> condicion .)
+    ID              reduce using rule 29 (estatuto -> asigna .)
+    SI              reduce using rule 29 (estatuto -> asigna .)
+    MIENTRAS        reduce using rule 29 (estatuto -> asigna .)
+    ESCRIBE         reduce using rule 29 (estatuto -> asigna .)
+    LBRACE          reduce using rule 29 (estatuto -> asigna .)
+    RBRACE          reduce using rule 29 (estatuto -> asigna .)
 
 
 state 38
 
-    (27) estatuto -> ciclo .
+    (30) estatuto -> condicion .
 
-    ID              reduce using rule 27 (estatuto -> ciclo .)
-    SI              reduce using rule 27 (estatuto -> ciclo .)
-    MIENTRAS        reduce using rule 27 (estatuto -> ciclo .)
-    ESCRIBE         reduce using rule 27 (estatuto -> ciclo .)
-    LBRACE          reduce using rule 27 (estatuto -> ciclo .)
-    RBRACE          reduce using rule 27 (estatuto -> ciclo .)
+    ID              reduce using rule 30 (estatuto -> condicion .)
+    SI              reduce using rule 30 (estatuto -> condicion .)
+    MIENTRAS        reduce using rule 30 (estatuto -> condicion .)
+    ESCRIBE         reduce using rule 30 (estatuto -> condicion .)
+    LBRACE          reduce using rule 30 (estatuto -> condicion .)
+    RBRACE          reduce using rule 30 (estatuto -> condicion .)
 
 
 state 39
 
-    (28) estatuto -> imprime .
+    (31) estatuto -> ciclo .
 
-    ID              reduce using rule 28 (estatuto -> imprime .)
-    SI              reduce using rule 28 (estatuto -> imprime .)
-    MIENTRAS        reduce using rule 28 (estatuto -> imprime .)
-    ESCRIBE         reduce using rule 28 (estatuto -> imprime .)
-    LBRACE          reduce using rule 28 (estatuto -> imprime .)
-    RBRACE          reduce using rule 28 (estatuto -> imprime .)
+    ID              reduce using rule 31 (estatuto -> ciclo .)
+    SI              reduce using rule 31 (estatuto -> ciclo .)
+    MIENTRAS        reduce using rule 31 (estatuto -> ciclo .)
+    ESCRIBE         reduce using rule 31 (estatuto -> ciclo .)
+    LBRACE          reduce using rule 31 (estatuto -> ciclo .)
+    RBRACE          reduce using rule 31 (estatuto -> ciclo .)
 
 
 state 40
 
-    (29) estatuto -> llamada . PTOCOMA
+    (32) estatuto -> imprime .
 
-    PTOCOMA         shift and go to state 53
+    ID              reduce using rule 32 (estatuto -> imprime .)
+    SI              reduce using rule 32 (estatuto -> imprime .)
+    MIENTRAS        reduce using rule 32 (estatuto -> imprime .)
+    ESCRIBE         reduce using rule 32 (estatuto -> imprime .)
+    LBRACE          reduce using rule 32 (estatuto -> imprime .)
+    RBRACE          reduce using rule 32 (estatuto -> imprime .)
 
 
 state 41
 
-    (30) estatuto -> cuerpo .
+    (33) estatuto -> llamada . PTOCOMA
 
-    ID              reduce using rule 30 (estatuto -> cuerpo .)
-    SI              reduce using rule 30 (estatuto -> cuerpo .)
-    MIENTRAS        reduce using rule 30 (estatuto -> cuerpo .)
-    ESCRIBE         reduce using rule 30 (estatuto -> cuerpo .)
-    LBRACE          reduce using rule 30 (estatuto -> cuerpo .)
-    RBRACE          reduce using rule 30 (estatuto -> cuerpo .)
+    PTOCOMA         shift and go to state 51
 
 
 state 42
 
-    (31) asigna -> ID . ASIG expresion PTOCOMA
-    (41) llamada -> ID . LPAREN RPAREN
-    (42) llamada -> ID . LPAREN lista_args RPAREN
+    (34) estatuto -> cuerpo .
 
-    ASIG            shift and go to state 54
-    LPAREN          shift and go to state 55
+    ID              reduce using rule 34 (estatuto -> cuerpo .)
+    SI              reduce using rule 34 (estatuto -> cuerpo .)
+    MIENTRAS        reduce using rule 34 (estatuto -> cuerpo .)
+    ESCRIBE         reduce using rule 34 (estatuto -> cuerpo .)
+    LBRACE          reduce using rule 34 (estatuto -> cuerpo .)
+    RBRACE          reduce using rule 34 (estatuto -> cuerpo .)
 
 
 state 43
 
-    (38) condicion -> SI . LPAREN expresion RPAREN cuerpo PTOCOMA
-    (39) condicion -> SI . LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
+    (35) asigna -> ID . ASIG expresion PTOCOMA
+    (45) llamada -> ID . LPAREN RPAREN
+    (46) llamada -> ID . LPAREN lista_args RPAREN
 
-    LPAREN          shift and go to state 56
+    ASIG            shift and go to state 52
+    LPAREN          shift and go to state 53
 
 
 state 44
 
-    (40) ciclo -> MIENTRAS . LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
+    (42) condicion -> SI . LPAREN expresion RPAREN cuerpo PTOCOMA
+    (43) condicion -> SI . LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA
 
-    LPAREN          shift and go to state 57
+    LPAREN          shift and go to state 54
 
 
 state 45
 
-    (32) imprime -> ESCRIBE . LPAREN lista_imprime RPAREN PTOCOMA
+    (44) ciclo -> MIENTRAS . LPAREN expresion RPAREN HAZ cuerpo PTOCOMA
 
-    LPAREN          shift and go to state 58
+    LPAREN          shift and go to state 55
 
 
 state 46
 
-    (20) lista_params -> ID . DOSPTOS tipo
+    (36) imprime -> ESCRIBE . LPAREN lista_imprime RPAREN PTOCOMA
 
-    DOSPTOS         shift and go to state 59
+    LPAREN          shift and go to state 56
 
 
 state 47
 
-    (15) func_def -> tipo_retorno ID LPAREN params . RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN . params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
+    (21) params -> . lista_params
+    (22) params -> . empty
+    (23) lista_params -> . ID DOSPTOS tipo pn_param
+    (24) lista_params -> . lista_params COMA ID DOSPTOS tipo pn_param
+    (71) empty -> .
 
-    RPAREN          shift and go to state 60
+    ID              shift and go to state 57
+    RPAREN          reduce using rule 71 (empty -> .)
 
+    params                         shift and go to state 58
+    lista_params                   shift and go to state 59
+    empty                          shift and go to state 60
 
 state 48
 
-    (18) params -> lista_params .
-    (21) lista_params -> lista_params . COMA ID DOSPTOS tipo
+    (9) decl_var -> ids DOSPTOS tipo PTOCOMA .
 
-    RPAREN          reduce using rule 18 (params -> lista_params .)
-    COMA            shift and go to state 61
+    ID              reduce using rule 9 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
+    NULA            reduce using rule 9 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
+    ENTERO          reduce using rule 9 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
+    FLOTANTE        reduce using rule 9 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
+    INICIO          reduce using rule 9 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
+    LBRACE          reduce using rule 9 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
 
 
 state 49
 
-    (19) params -> empty .
+    (26) cuerpo -> LBRACE lista_estatuto RBRACE .
 
-    RPAREN          reduce using rule 19 (params -> empty .)
+    FIN             reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    ID              reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    SI              reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    MIENTRAS        reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    ESCRIBE         reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    LBRACE          reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    RBRACE          reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    PTOCOMA         reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    SINO            reduce using rule 26 (cuerpo -> LBRACE lista_estatuto RBRACE .)
 
 
 state 50
 
-    (8) decl_var -> ids DOSPTOS tipo PTOCOMA .
+    (27) lista_estatuto -> estatuto lista_estatuto .
 
-    ID              reduce using rule 8 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
-    NULA            reduce using rule 8 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
-    ENTERO          reduce using rule 8 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
-    FLOTANTE        reduce using rule 8 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
-    INICIO          reduce using rule 8 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
-    LBRACE          reduce using rule 8 (decl_var -> ids DOSPTOS tipo PTOCOMA .)
+    RBRACE          reduce using rule 27 (lista_estatuto -> estatuto lista_estatuto .)
 
 
 state 51
 
-    (22) cuerpo -> LBRACE lista_estatuto RBRACE .
+    (33) estatuto -> llamada PTOCOMA .
 
-    FIN             reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    ID              reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    SI              reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    MIENTRAS        reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    ESCRIBE         reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    LBRACE          reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    RBRACE          reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    PTOCOMA         reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
-    SINO            reduce using rule 22 (cuerpo -> LBRACE lista_estatuto RBRACE .)
+    ID              reduce using rule 33 (estatuto -> llamada PTOCOMA .)
+    SI              reduce using rule 33 (estatuto -> llamada PTOCOMA .)
+    MIENTRAS        reduce using rule 33 (estatuto -> llamada PTOCOMA .)
+    ESCRIBE         reduce using rule 33 (estatuto -> llamada PTOCOMA .)
+    LBRACE          reduce using rule 33 (estatuto -> llamada PTOCOMA .)
+    RBRACE          reduce using rule 33 (estatuto -> llamada PTOCOMA .)
 
 
 state 52
 
-    (23) lista_estatuto -> estatuto lista_estatuto .
+    (35) asigna -> ID ASIG . expresion PTOCOMA
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    RBRACE          reduce using rule 23 (lista_estatuto -> estatuto lista_estatuto .)
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    expresion                      shift and go to state 62
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 53
 
-    (29) estatuto -> llamada PTOCOMA .
+    (45) llamada -> ID LPAREN . RPAREN
+    (46) llamada -> ID LPAREN . lista_args RPAREN
+    (47) lista_args -> . expresion
+    (48) lista_args -> . lista_args COMA expresion
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    ID              reduce using rule 29 (estatuto -> llamada PTOCOMA .)
-    SI              reduce using rule 29 (estatuto -> llamada PTOCOMA .)
-    MIENTRAS        reduce using rule 29 (estatuto -> llamada PTOCOMA .)
-    ESCRIBE         reduce using rule 29 (estatuto -> llamada PTOCOMA .)
-    LBRACE          reduce using rule 29 (estatuto -> llamada PTOCOMA .)
-    RBRACE          reduce using rule 29 (estatuto -> llamada PTOCOMA .)
+    RPAREN          shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    lista_args                     shift and go to state 74
+    expresion                      shift and go to state 75
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 54
 
-    (31) asigna -> ID ASIG . expresion PTOCOMA
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (42) condicion -> SI LPAREN . expresion RPAREN cuerpo PTOCOMA
+    (43) condicion -> SI LPAREN . expresion RPAREN cuerpo SINO cuerpo PTOCOMA
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
-    expresion                      shift and go to state 63
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    expresion                      shift and go to state 76
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 55
 
-    (41) llamada -> ID LPAREN . RPAREN
-    (42) llamada -> ID LPAREN . lista_args RPAREN
-    (43) lista_args -> . expresion
-    (44) lista_args -> . lista_args COMA expresion
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (44) ciclo -> MIENTRAS LPAREN . expresion RPAREN HAZ cuerpo PTOCOMA
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    RPAREN          shift and go to state 74
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
-    lista_args                     shift and go to state 75
-    expresion                      shift and go to state 76
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    expresion                      shift and go to state 77
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 56
 
-    (38) condicion -> SI LPAREN . expresion RPAREN cuerpo PTOCOMA
-    (39) condicion -> SI LPAREN . expresion RPAREN cuerpo SINO cuerpo PTOCOMA
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (36) imprime -> ESCRIBE LPAREN . lista_imprime RPAREN PTOCOMA
+    (37) lista_imprime -> . item_imprime
+    (38) lista_imprime -> . lista_imprime COMA item_imprime
+    (39) item_imprime -> . expresion
+    (40) item_imprime -> . LETRERO
+    (41) item_imprime -> . LETRERO_KW
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LETRERO         shift and go to state 81
+    LETRERO_KW      shift and go to state 82
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
-    expresion                      shift and go to state 77
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    lista_imprime                  shift and go to state 78
+    item_imprime                   shift and go to state 79
+    expresion                      shift and go to state 80
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 57
 
-    (40) ciclo -> MIENTRAS LPAREN . expresion RPAREN HAZ cuerpo PTOCOMA
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (23) lista_params -> ID . DOSPTOS tipo pn_param
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    DOSPTOS         shift and go to state 83
 
-    expresion                      shift and go to state 78
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
 
 state 58
 
-    (32) imprime -> ESCRIBE LPAREN . lista_imprime RPAREN PTOCOMA
-    (33) lista_imprime -> . item_imprime
-    (34) lista_imprime -> . lista_imprime COMA item_imprime
-    (35) item_imprime -> . expresion
-    (36) item_imprime -> . LETRERO
-    (37) item_imprime -> . LETRERO_KW
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params . RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
 
-    LETRERO         shift and go to state 82
-    LETRERO_KW      shift and go to state 83
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    RPAREN          shift and go to state 84
 
-    lista_imprime                  shift and go to state 79
-    item_imprime                   shift and go to state 80
-    expresion                      shift and go to state 81
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
 
 state 59
 
-    (20) lista_params -> ID DOSPTOS . tipo
-    (11) tipo -> . ENTERO
-    (12) tipo -> . FLOTANTE
+    (21) params -> lista_params .
+    (24) lista_params -> lista_params . COMA ID DOSPTOS tipo pn_param
 
-    ENTERO          shift and go to state 15
-    FLOTANTE        shift and go to state 16
+    RPAREN          reduce using rule 21 (params -> lista_params .)
+    COMA            shift and go to state 85
 
-    tipo                           shift and go to state 84
 
 state 60
 
-    (15) func_def -> tipo_retorno ID LPAREN params RPAREN . LBRACE vars_opcional cuerpo RBRACE PTOCOMA
+    (22) params -> empty .
 
-    LBRACE          shift and go to state 85
+    RPAREN          reduce using rule 22 (params -> empty .)
 
 
 state 61
 
-    (21) lista_params -> lista_params COMA . ID DOSPTOS tipo
+    (67) factor -> ID .
+    (45) llamada -> ID . LPAREN RPAREN
+    (46) llamada -> ID . LPAREN lista_args RPAREN
 
-    ID              shift and go to state 86
+    POR             reduce using rule 67 (factor -> ID .)
+    DIV             reduce using rule 67 (factor -> ID .)
+    MAS             reduce using rule 67 (factor -> ID .)
+    MENOS           reduce using rule 67 (factor -> ID .)
+    MAYOR           reduce using rule 67 (factor -> ID .)
+    MENOR           reduce using rule 67 (factor -> ID .)
+    DIF             reduce using rule 67 (factor -> ID .)
+    IGUALDAD        reduce using rule 67 (factor -> ID .)
+    MAYORIG         reduce using rule 67 (factor -> ID .)
+    MENORIG         reduce using rule 67 (factor -> ID .)
+    PTOCOMA         reduce using rule 67 (factor -> ID .)
+    RPAREN          reduce using rule 67 (factor -> ID .)
+    COMA            reduce using rule 67 (factor -> ID .)
+    LPAREN          shift and go to state 53
 
 
 state 62
 
-    (63) factor -> ID .
-    (41) llamada -> ID . LPAREN RPAREN
-    (42) llamada -> ID . LPAREN lista_args RPAREN
+    (35) asigna -> ID ASIG expresion . PTOCOMA
 
-    POR             reduce using rule 63 (factor -> ID .)
-    DIV             reduce using rule 63 (factor -> ID .)
-    MAS             reduce using rule 63 (factor -> ID .)
-    MENOS           reduce using rule 63 (factor -> ID .)
-    MAYOR           reduce using rule 63 (factor -> ID .)
-    MENOR           reduce using rule 63 (factor -> ID .)
-    DIF             reduce using rule 63 (factor -> ID .)
-    IGUALDAD        reduce using rule 63 (factor -> ID .)
-    MAYORIG         reduce using rule 63 (factor -> ID .)
-    MENORIG         reduce using rule 63 (factor -> ID .)
-    PTOCOMA         reduce using rule 63 (factor -> ID .)
-    RPAREN          reduce using rule 63 (factor -> ID .)
-    COMA            reduce using rule 63 (factor -> ID .)
-    LPAREN          shift and go to state 55
+    PTOCOMA         shift and go to state 86
 
 
 state 63
 
-    (31) asigna -> ID ASIG expresion . PTOCOMA
+    (49) expresion -> exp .
+    (50) expresion -> exp . OPREL exp
+    (58) exp -> exp . MAS termino
+    (59) exp -> exp . MENOS termino
+    (51) OPREL -> . MAYOR
+    (52) OPREL -> . MENOR
+    (53) OPREL -> . DIF
+    (54) OPREL -> . IGUALDAD
+    (55) OPREL -> . MAYORIG
+    (56) OPREL -> . MENORIG
 
-    PTOCOMA         shift and go to state 87
+    PTOCOMA         reduce using rule 49 (expresion -> exp .)
+    RPAREN          reduce using rule 49 (expresion -> exp .)
+    COMA            reduce using rule 49 (expresion -> exp .)
+    MAS             shift and go to state 88
+    MENOS           shift and go to state 89
+    MAYOR           shift and go to state 90
+    MENOR           shift and go to state 91
+    DIF             shift and go to state 92
+    IGUALDAD        shift and go to state 93
+    MAYORIG         shift and go to state 94
+    MENORIG         shift and go to state 95
 
+    OPREL                          shift and go to state 87
 
 state 64
 
-    (45) expresion -> exp .
-    (46) expresion -> exp . OPREL exp
-    (54) exp -> exp . MAS termino
-    (55) exp -> exp . MENOS termino
-    (47) OPREL -> . MAYOR
-    (48) OPREL -> . MENOR
-    (49) OPREL -> . DIF
-    (50) OPREL -> . IGUALDAD
-    (51) OPREL -> . MAYORIG
-    (52) OPREL -> . MENORIG
+    (57) exp -> termino .
+    (61) termino -> termino . POR factor
+    (62) termino -> termino . DIV factor
 
-    PTOCOMA         reduce using rule 45 (expresion -> exp .)
-    RPAREN          reduce using rule 45 (expresion -> exp .)
-    COMA            reduce using rule 45 (expresion -> exp .)
-    MAS             shift and go to state 89
-    MENOS           shift and go to state 90
-    MAYOR           shift and go to state 91
-    MENOR           shift and go to state 92
-    DIF             shift and go to state 93
-    IGUALDAD        shift and go to state 94
-    MAYORIG         shift and go to state 95
-    MENORIG         shift and go to state 96
+    MAS             reduce using rule 57 (exp -> termino .)
+    MENOS           reduce using rule 57 (exp -> termino .)
+    MAYOR           reduce using rule 57 (exp -> termino .)
+    MENOR           reduce using rule 57 (exp -> termino .)
+    DIF             reduce using rule 57 (exp -> termino .)
+    IGUALDAD        reduce using rule 57 (exp -> termino .)
+    MAYORIG         reduce using rule 57 (exp -> termino .)
+    MENORIG         reduce using rule 57 (exp -> termino .)
+    PTOCOMA         reduce using rule 57 (exp -> termino .)
+    RPAREN          reduce using rule 57 (exp -> termino .)
+    COMA            reduce using rule 57 (exp -> termino .)
+    POR             shift and go to state 96
+    DIV             shift and go to state 97
 
-    OPREL                          shift and go to state 88
 
 state 65
 
-    (53) exp -> termino .
-    (57) termino -> termino . POR factor
-    (58) termino -> termino . DIV factor
+    (64) factor -> MAS . factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    MAS             reduce using rule 53 (exp -> termino .)
-    MENOS           reduce using rule 53 (exp -> termino .)
-    MAYOR           reduce using rule 53 (exp -> termino .)
-    MENOR           reduce using rule 53 (exp -> termino .)
-    DIF             reduce using rule 53 (exp -> termino .)
-    IGUALDAD        reduce using rule 53 (exp -> termino .)
-    MAYORIG         reduce using rule 53 (exp -> termino .)
-    MENORIG         reduce using rule 53 (exp -> termino .)
-    PTOCOMA         reduce using rule 53 (exp -> termino .)
-    RPAREN          reduce using rule 53 (exp -> termino .)
-    COMA            reduce using rule 53 (exp -> termino .)
-    POR             shift and go to state 97
-    DIV             shift and go to state 98
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    factor                         shift and go to state 98
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 66
 
-    (60) factor -> MAS . factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (65) factor -> MENOS . factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
     factor                         shift and go to state 99
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 67
 
-    (61) factor -> MENOS . factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (60) termino -> factor .
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    POR             reduce using rule 60 (termino -> factor .)
+    DIV             reduce using rule 60 (termino -> factor .)
+    MAS             reduce using rule 60 (termino -> factor .)
+    MENOS           reduce using rule 60 (termino -> factor .)
+    MAYOR           reduce using rule 60 (termino -> factor .)
+    MENOR           reduce using rule 60 (termino -> factor .)
+    DIF             reduce using rule 60 (termino -> factor .)
+    IGUALDAD        reduce using rule 60 (termino -> factor .)
+    MAYORIG         reduce using rule 60 (termino -> factor .)
+    MENORIG         reduce using rule 60 (termino -> factor .)
+    PTOCOMA         reduce using rule 60 (termino -> factor .)
+    RPAREN          reduce using rule 60 (termino -> factor .)
+    COMA            reduce using rule 60 (termino -> factor .)
 
-    factor                         shift and go to state 100
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
 
 state 68
 
-    (56) termino -> factor .
+    (63) factor -> LPAREN . expresion RPAREN
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    POR             reduce using rule 56 (termino -> factor .)
-    DIV             reduce using rule 56 (termino -> factor .)
-    MAS             reduce using rule 56 (termino -> factor .)
-    MENOS           reduce using rule 56 (termino -> factor .)
-    MAYOR           reduce using rule 56 (termino -> factor .)
-    MENOR           reduce using rule 56 (termino -> factor .)
-    DIF             reduce using rule 56 (termino -> factor .)
-    IGUALDAD        reduce using rule 56 (termino -> factor .)
-    MAYORIG         reduce using rule 56 (termino -> factor .)
-    MENORIG         reduce using rule 56 (termino -> factor .)
-    PTOCOMA         reduce using rule 56 (termino -> factor .)
-    RPAREN          reduce using rule 56 (termino -> factor .)
-    COMA            reduce using rule 56 (termino -> factor .)
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    expresion                      shift and go to state 100
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 69
 
-    (59) factor -> LPAREN . expresion RPAREN
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (66) factor -> llamada .
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    POR             reduce using rule 66 (factor -> llamada .)
+    DIV             reduce using rule 66 (factor -> llamada .)
+    MAS             reduce using rule 66 (factor -> llamada .)
+    MENOS           reduce using rule 66 (factor -> llamada .)
+    MAYOR           reduce using rule 66 (factor -> llamada .)
+    MENOR           reduce using rule 66 (factor -> llamada .)
+    DIF             reduce using rule 66 (factor -> llamada .)
+    IGUALDAD        reduce using rule 66 (factor -> llamada .)
+    MAYORIG         reduce using rule 66 (factor -> llamada .)
+    MENORIG         reduce using rule 66 (factor -> llamada .)
+    PTOCOMA         reduce using rule 66 (factor -> llamada .)
+    RPAREN          reduce using rule 66 (factor -> llamada .)
+    COMA            reduce using rule 66 (factor -> llamada .)
 
-    expresion                      shift and go to state 101
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
 
 state 70
 
-    (62) factor -> llamada .
+    (68) factor -> cte .
 
-    POR             reduce using rule 62 (factor -> llamada .)
-    DIV             reduce using rule 62 (factor -> llamada .)
-    MAS             reduce using rule 62 (factor -> llamada .)
-    MENOS           reduce using rule 62 (factor -> llamada .)
-    MAYOR           reduce using rule 62 (factor -> llamada .)
-    MENOR           reduce using rule 62 (factor -> llamada .)
-    DIF             reduce using rule 62 (factor -> llamada .)
-    IGUALDAD        reduce using rule 62 (factor -> llamada .)
-    MAYORIG         reduce using rule 62 (factor -> llamada .)
-    MENORIG         reduce using rule 62 (factor -> llamada .)
-    PTOCOMA         reduce using rule 62 (factor -> llamada .)
-    RPAREN          reduce using rule 62 (factor -> llamada .)
-    COMA            reduce using rule 62 (factor -> llamada .)
+    POR             reduce using rule 68 (factor -> cte .)
+    DIV             reduce using rule 68 (factor -> cte .)
+    MAS             reduce using rule 68 (factor -> cte .)
+    MENOS           reduce using rule 68 (factor -> cte .)
+    MAYOR           reduce using rule 68 (factor -> cte .)
+    MENOR           reduce using rule 68 (factor -> cte .)
+    DIF             reduce using rule 68 (factor -> cte .)
+    IGUALDAD        reduce using rule 68 (factor -> cte .)
+    MAYORIG         reduce using rule 68 (factor -> cte .)
+    MENORIG         reduce using rule 68 (factor -> cte .)
+    PTOCOMA         reduce using rule 68 (factor -> cte .)
+    RPAREN          reduce using rule 68 (factor -> cte .)
+    COMA            reduce using rule 68 (factor -> cte .)
 
 
 state 71
 
-    (64) factor -> cte .
+    (69) cte -> CTE_ENT .
 
-    POR             reduce using rule 64 (factor -> cte .)
-    DIV             reduce using rule 64 (factor -> cte .)
-    MAS             reduce using rule 64 (factor -> cte .)
-    MENOS           reduce using rule 64 (factor -> cte .)
-    MAYOR           reduce using rule 64 (factor -> cte .)
-    MENOR           reduce using rule 64 (factor -> cte .)
-    DIF             reduce using rule 64 (factor -> cte .)
-    IGUALDAD        reduce using rule 64 (factor -> cte .)
-    MAYORIG         reduce using rule 64 (factor -> cte .)
-    MENORIG         reduce using rule 64 (factor -> cte .)
-    PTOCOMA         reduce using rule 64 (factor -> cte .)
-    RPAREN          reduce using rule 64 (factor -> cte .)
-    COMA            reduce using rule 64 (factor -> cte .)
+    POR             reduce using rule 69 (cte -> CTE_ENT .)
+    DIV             reduce using rule 69 (cte -> CTE_ENT .)
+    MAS             reduce using rule 69 (cte -> CTE_ENT .)
+    MENOS           reduce using rule 69 (cte -> CTE_ENT .)
+    MAYOR           reduce using rule 69 (cte -> CTE_ENT .)
+    MENOR           reduce using rule 69 (cte -> CTE_ENT .)
+    DIF             reduce using rule 69 (cte -> CTE_ENT .)
+    IGUALDAD        reduce using rule 69 (cte -> CTE_ENT .)
+    MAYORIG         reduce using rule 69 (cte -> CTE_ENT .)
+    MENORIG         reduce using rule 69 (cte -> CTE_ENT .)
+    PTOCOMA         reduce using rule 69 (cte -> CTE_ENT .)
+    RPAREN          reduce using rule 69 (cte -> CTE_ENT .)
+    COMA            reduce using rule 69 (cte -> CTE_ENT .)
 
 
 state 72
 
-    (65) cte -> CTE_ENT .
+    (70) cte -> CTE_FLOT .
 
-    POR             reduce using rule 65 (cte -> CTE_ENT .)
-    DIV             reduce using rule 65 (cte -> CTE_ENT .)
-    MAS             reduce using rule 65 (cte -> CTE_ENT .)
-    MENOS           reduce using rule 65 (cte -> CTE_ENT .)
-    MAYOR           reduce using rule 65 (cte -> CTE_ENT .)
-    MENOR           reduce using rule 65 (cte -> CTE_ENT .)
-    DIF             reduce using rule 65 (cte -> CTE_ENT .)
-    IGUALDAD        reduce using rule 65 (cte -> CTE_ENT .)
-    MAYORIG         reduce using rule 65 (cte -> CTE_ENT .)
-    MENORIG         reduce using rule 65 (cte -> CTE_ENT .)
-    PTOCOMA         reduce using rule 65 (cte -> CTE_ENT .)
-    RPAREN          reduce using rule 65 (cte -> CTE_ENT .)
-    COMA            reduce using rule 65 (cte -> CTE_ENT .)
+    POR             reduce using rule 70 (cte -> CTE_FLOT .)
+    DIV             reduce using rule 70 (cte -> CTE_FLOT .)
+    MAS             reduce using rule 70 (cte -> CTE_FLOT .)
+    MENOS           reduce using rule 70 (cte -> CTE_FLOT .)
+    MAYOR           reduce using rule 70 (cte -> CTE_FLOT .)
+    MENOR           reduce using rule 70 (cte -> CTE_FLOT .)
+    DIF             reduce using rule 70 (cte -> CTE_FLOT .)
+    IGUALDAD        reduce using rule 70 (cte -> CTE_FLOT .)
+    MAYORIG         reduce using rule 70 (cte -> CTE_FLOT .)
+    MENORIG         reduce using rule 70 (cte -> CTE_FLOT .)
+    PTOCOMA         reduce using rule 70 (cte -> CTE_FLOT .)
+    RPAREN          reduce using rule 70 (cte -> CTE_FLOT .)
+    COMA            reduce using rule 70 (cte -> CTE_FLOT .)
 
 
 state 73
 
-    (66) cte -> CTE_FLOT .
+    (45) llamada -> ID LPAREN RPAREN .
 
-    POR             reduce using rule 66 (cte -> CTE_FLOT .)
-    DIV             reduce using rule 66 (cte -> CTE_FLOT .)
-    MAS             reduce using rule 66 (cte -> CTE_FLOT .)
-    MENOS           reduce using rule 66 (cte -> CTE_FLOT .)
-    MAYOR           reduce using rule 66 (cte -> CTE_FLOT .)
-    MENOR           reduce using rule 66 (cte -> CTE_FLOT .)
-    DIF             reduce using rule 66 (cte -> CTE_FLOT .)
-    IGUALDAD        reduce using rule 66 (cte -> CTE_FLOT .)
-    MAYORIG         reduce using rule 66 (cte -> CTE_FLOT .)
-    MENORIG         reduce using rule 66 (cte -> CTE_FLOT .)
-    PTOCOMA         reduce using rule 66 (cte -> CTE_FLOT .)
-    RPAREN          reduce using rule 66 (cte -> CTE_FLOT .)
-    COMA            reduce using rule 66 (cte -> CTE_FLOT .)
+    PTOCOMA         reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    POR             reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    DIV             reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    MAS             reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    MENOS           reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    MAYOR           reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    MENOR           reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    DIF             reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    IGUALDAD        reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    MAYORIG         reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    MENORIG         reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    RPAREN          reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
+    COMA            reduce using rule 45 (llamada -> ID LPAREN RPAREN .)
 
 
 state 74
 
-    (41) llamada -> ID LPAREN RPAREN .
+    (46) llamada -> ID LPAREN lista_args . RPAREN
+    (48) lista_args -> lista_args . COMA expresion
 
-    PTOCOMA         reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    POR             reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    DIV             reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    MAS             reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    MENOS           reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    MAYOR           reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    MENOR           reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    DIF             reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    IGUALDAD        reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    MAYORIG         reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    MENORIG         reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    RPAREN          reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
-    COMA            reduce using rule 41 (llamada -> ID LPAREN RPAREN .)
+    RPAREN          shift and go to state 101
+    COMA            shift and go to state 102
 
 
 state 75
 
-    (42) llamada -> ID LPAREN lista_args . RPAREN
-    (44) lista_args -> lista_args . COMA expresion
+    (47) lista_args -> expresion .
 
-    RPAREN          shift and go to state 102
-    COMA            shift and go to state 103
+    RPAREN          reduce using rule 47 (lista_args -> expresion .)
+    COMA            reduce using rule 47 (lista_args -> expresion .)
 
 
 state 76
 
-    (43) lista_args -> expresion .
+    (42) condicion -> SI LPAREN expresion . RPAREN cuerpo PTOCOMA
+    (43) condicion -> SI LPAREN expresion . RPAREN cuerpo SINO cuerpo PTOCOMA
 
-    RPAREN          reduce using rule 43 (lista_args -> expresion .)
-    COMA            reduce using rule 43 (lista_args -> expresion .)
+    RPAREN          shift and go to state 103
 
 
 state 77
 
-    (38) condicion -> SI LPAREN expresion . RPAREN cuerpo PTOCOMA
-    (39) condicion -> SI LPAREN expresion . RPAREN cuerpo SINO cuerpo PTOCOMA
+    (44) ciclo -> MIENTRAS LPAREN expresion . RPAREN HAZ cuerpo PTOCOMA
 
     RPAREN          shift and go to state 104
 
 
 state 78
 
-    (40) ciclo -> MIENTRAS LPAREN expresion . RPAREN HAZ cuerpo PTOCOMA
+    (36) imprime -> ESCRIBE LPAREN lista_imprime . RPAREN PTOCOMA
+    (38) lista_imprime -> lista_imprime . COMA item_imprime
 
     RPAREN          shift and go to state 105
+    COMA            shift and go to state 106
 
 
 state 79
 
-    (32) imprime -> ESCRIBE LPAREN lista_imprime . RPAREN PTOCOMA
-    (34) lista_imprime -> lista_imprime . COMA item_imprime
+    (37) lista_imprime -> item_imprime .
 
-    RPAREN          shift and go to state 106
-    COMA            shift and go to state 107
+    RPAREN          reduce using rule 37 (lista_imprime -> item_imprime .)
+    COMA            reduce using rule 37 (lista_imprime -> item_imprime .)
 
 
 state 80
 
-    (33) lista_imprime -> item_imprime .
+    (39) item_imprime -> expresion .
 
-    RPAREN          reduce using rule 33 (lista_imprime -> item_imprime .)
-    COMA            reduce using rule 33 (lista_imprime -> item_imprime .)
+    RPAREN          reduce using rule 39 (item_imprime -> expresion .)
+    COMA            reduce using rule 39 (item_imprime -> expresion .)
 
 
 state 81
 
-    (35) item_imprime -> expresion .
+    (40) item_imprime -> LETRERO .
 
-    RPAREN          reduce using rule 35 (item_imprime -> expresion .)
-    COMA            reduce using rule 35 (item_imprime -> expresion .)
+    RPAREN          reduce using rule 40 (item_imprime -> LETRERO .)
+    COMA            reduce using rule 40 (item_imprime -> LETRERO .)
 
 
 state 82
 
-    (36) item_imprime -> LETRERO .
+    (41) item_imprime -> LETRERO_KW .
 
-    RPAREN          reduce using rule 36 (item_imprime -> LETRERO .)
-    COMA            reduce using rule 36 (item_imprime -> LETRERO .)
+    RPAREN          reduce using rule 41 (item_imprime -> LETRERO_KW .)
+    COMA            reduce using rule 41 (item_imprime -> LETRERO_KW .)
 
 
 state 83
 
-    (37) item_imprime -> LETRERO_KW .
+    (23) lista_params -> ID DOSPTOS . tipo pn_param
+    (12) tipo -> . ENTERO
+    (13) tipo -> . FLOTANTE
 
-    RPAREN          reduce using rule 37 (item_imprime -> LETRERO_KW .)
-    COMA            reduce using rule 37 (item_imprime -> LETRERO_KW .)
+    ENTERO          shift and go to state 16
+    FLOTANTE        shift and go to state 17
 
+    tipo                           shift and go to state 107
 
 state 84
 
-    (20) lista_params -> ID DOSPTOS tipo .
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN . LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
 
-    COMA            reduce using rule 20 (lista_params -> ID DOSPTOS tipo .)
-    RPAREN          reduce using rule 20 (lista_params -> ID DOSPTOS tipo .)
+    LBRACE          shift and go to state 108
 
 
 state 85
 
-    (15) func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE . vars_opcional cuerpo RBRACE PTOCOMA
-    (2) vars_opcional -> . VARS lista_decl_var
-    (3) vars_opcional -> . empty
-    (67) empty -> .
+    (24) lista_params -> lista_params COMA . ID DOSPTOS tipo pn_param
 
-    VARS            shift and go to state 6
-    LBRACE          reduce using rule 67 (empty -> .)
+    ID              shift and go to state 109
 
-    vars_opcional                  shift and go to state 108
-    empty                          shift and go to state 7
 
 state 86
 
-    (21) lista_params -> lista_params COMA ID . DOSPTOS tipo
+    (35) asigna -> ID ASIG expresion PTOCOMA .
 
-    DOSPTOS         shift and go to state 109
+    ID              reduce using rule 35 (asigna -> ID ASIG expresion PTOCOMA .)
+    SI              reduce using rule 35 (asigna -> ID ASIG expresion PTOCOMA .)
+    MIENTRAS        reduce using rule 35 (asigna -> ID ASIG expresion PTOCOMA .)
+    ESCRIBE         reduce using rule 35 (asigna -> ID ASIG expresion PTOCOMA .)
+    LBRACE          reduce using rule 35 (asigna -> ID ASIG expresion PTOCOMA .)
+    RBRACE          reduce using rule 35 (asigna -> ID ASIG expresion PTOCOMA .)
 
 
 state 87
 
-    (31) asigna -> ID ASIG expresion PTOCOMA .
+    (50) expresion -> exp OPREL . exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    ID              reduce using rule 31 (asigna -> ID ASIG expresion PTOCOMA .)
-    SI              reduce using rule 31 (asigna -> ID ASIG expresion PTOCOMA .)
-    MIENTRAS        reduce using rule 31 (asigna -> ID ASIG expresion PTOCOMA .)
-    ESCRIBE         reduce using rule 31 (asigna -> ID ASIG expresion PTOCOMA .)
-    LBRACE          reduce using rule 31 (asigna -> ID ASIG expresion PTOCOMA .)
-    RBRACE          reduce using rule 31 (asigna -> ID ASIG expresion PTOCOMA .)
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    exp                            shift and go to state 110
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 88
 
-    (46) expresion -> exp OPREL . exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (58) exp -> exp MAS . termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
-    exp                            shift and go to state 110
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    termino                        shift and go to state 111
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 89
 
-    (54) exp -> exp MAS . termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (59) exp -> exp MENOS . termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
-    termino                        shift and go to state 111
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    termino                        shift and go to state 112
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 90
 
-    (55) exp -> exp MENOS . termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (51) OPREL -> MAYOR .
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          reduce using rule 51 (OPREL -> MAYOR .)
+    MAS             reduce using rule 51 (OPREL -> MAYOR .)
+    MENOS           reduce using rule 51 (OPREL -> MAYOR .)
+    ID              reduce using rule 51 (OPREL -> MAYOR .)
+    CTE_ENT         reduce using rule 51 (OPREL -> MAYOR .)
+    CTE_FLOT        reduce using rule 51 (OPREL -> MAYOR .)
 
-    termino                        shift and go to state 112
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
 
 state 91
 
-    (47) OPREL -> MAYOR .
+    (52) OPREL -> MENOR .
 
-    LPAREN          reduce using rule 47 (OPREL -> MAYOR .)
-    MAS             reduce using rule 47 (OPREL -> MAYOR .)
-    MENOS           reduce using rule 47 (OPREL -> MAYOR .)
-    ID              reduce using rule 47 (OPREL -> MAYOR .)
-    CTE_ENT         reduce using rule 47 (OPREL -> MAYOR .)
-    CTE_FLOT        reduce using rule 47 (OPREL -> MAYOR .)
+    LPAREN          reduce using rule 52 (OPREL -> MENOR .)
+    MAS             reduce using rule 52 (OPREL -> MENOR .)
+    MENOS           reduce using rule 52 (OPREL -> MENOR .)
+    ID              reduce using rule 52 (OPREL -> MENOR .)
+    CTE_ENT         reduce using rule 52 (OPREL -> MENOR .)
+    CTE_FLOT        reduce using rule 52 (OPREL -> MENOR .)
 
 
 state 92
 
-    (48) OPREL -> MENOR .
+    (53) OPREL -> DIF .
 
-    LPAREN          reduce using rule 48 (OPREL -> MENOR .)
-    MAS             reduce using rule 48 (OPREL -> MENOR .)
-    MENOS           reduce using rule 48 (OPREL -> MENOR .)
-    ID              reduce using rule 48 (OPREL -> MENOR .)
-    CTE_ENT         reduce using rule 48 (OPREL -> MENOR .)
-    CTE_FLOT        reduce using rule 48 (OPREL -> MENOR .)
+    LPAREN          reduce using rule 53 (OPREL -> DIF .)
+    MAS             reduce using rule 53 (OPREL -> DIF .)
+    MENOS           reduce using rule 53 (OPREL -> DIF .)
+    ID              reduce using rule 53 (OPREL -> DIF .)
+    CTE_ENT         reduce using rule 53 (OPREL -> DIF .)
+    CTE_FLOT        reduce using rule 53 (OPREL -> DIF .)
 
 
 state 93
 
-    (49) OPREL -> DIF .
+    (54) OPREL -> IGUALDAD .
 
-    LPAREN          reduce using rule 49 (OPREL -> DIF .)
-    MAS             reduce using rule 49 (OPREL -> DIF .)
-    MENOS           reduce using rule 49 (OPREL -> DIF .)
-    ID              reduce using rule 49 (OPREL -> DIF .)
-    CTE_ENT         reduce using rule 49 (OPREL -> DIF .)
-    CTE_FLOT        reduce using rule 49 (OPREL -> DIF .)
+    LPAREN          reduce using rule 54 (OPREL -> IGUALDAD .)
+    MAS             reduce using rule 54 (OPREL -> IGUALDAD .)
+    MENOS           reduce using rule 54 (OPREL -> IGUALDAD .)
+    ID              reduce using rule 54 (OPREL -> IGUALDAD .)
+    CTE_ENT         reduce using rule 54 (OPREL -> IGUALDAD .)
+    CTE_FLOT        reduce using rule 54 (OPREL -> IGUALDAD .)
 
 
 state 94
 
-    (50) OPREL -> IGUALDAD .
+    (55) OPREL -> MAYORIG .
 
-    LPAREN          reduce using rule 50 (OPREL -> IGUALDAD .)
-    MAS             reduce using rule 50 (OPREL -> IGUALDAD .)
-    MENOS           reduce using rule 50 (OPREL -> IGUALDAD .)
-    ID              reduce using rule 50 (OPREL -> IGUALDAD .)
-    CTE_ENT         reduce using rule 50 (OPREL -> IGUALDAD .)
-    CTE_FLOT        reduce using rule 50 (OPREL -> IGUALDAD .)
+    LPAREN          reduce using rule 55 (OPREL -> MAYORIG .)
+    MAS             reduce using rule 55 (OPREL -> MAYORIG .)
+    MENOS           reduce using rule 55 (OPREL -> MAYORIG .)
+    ID              reduce using rule 55 (OPREL -> MAYORIG .)
+    CTE_ENT         reduce using rule 55 (OPREL -> MAYORIG .)
+    CTE_FLOT        reduce using rule 55 (OPREL -> MAYORIG .)
 
 
 state 95
 
-    (51) OPREL -> MAYORIG .
+    (56) OPREL -> MENORIG .
 
-    LPAREN          reduce using rule 51 (OPREL -> MAYORIG .)
-    MAS             reduce using rule 51 (OPREL -> MAYORIG .)
-    MENOS           reduce using rule 51 (OPREL -> MAYORIG .)
-    ID              reduce using rule 51 (OPREL -> MAYORIG .)
-    CTE_ENT         reduce using rule 51 (OPREL -> MAYORIG .)
-    CTE_FLOT        reduce using rule 51 (OPREL -> MAYORIG .)
+    LPAREN          reduce using rule 56 (OPREL -> MENORIG .)
+    MAS             reduce using rule 56 (OPREL -> MENORIG .)
+    MENOS           reduce using rule 56 (OPREL -> MENORIG .)
+    ID              reduce using rule 56 (OPREL -> MENORIG .)
+    CTE_ENT         reduce using rule 56 (OPREL -> MENORIG .)
+    CTE_FLOT        reduce using rule 56 (OPREL -> MENORIG .)
 
 
 state 96
 
-    (52) OPREL -> MENORIG .
+    (61) termino -> termino POR . factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          reduce using rule 52 (OPREL -> MENORIG .)
-    MAS             reduce using rule 52 (OPREL -> MENORIG .)
-    MENOS           reduce using rule 52 (OPREL -> MENORIG .)
-    ID              reduce using rule 52 (OPREL -> MENORIG .)
-    CTE_ENT         reduce using rule 52 (OPREL -> MENORIG .)
-    CTE_FLOT        reduce using rule 52 (OPREL -> MENORIG .)
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    factor                         shift and go to state 113
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 97
 
-    (57) termino -> termino POR . factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (62) termino -> termino DIV . factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
-    factor                         shift and go to state 113
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    factor                         shift and go to state 114
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 98
 
-    (58) termino -> termino DIV . factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (64) factor -> MAS factor .
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    POR             reduce using rule 64 (factor -> MAS factor .)
+    DIV             reduce using rule 64 (factor -> MAS factor .)
+    MAS             reduce using rule 64 (factor -> MAS factor .)
+    MENOS           reduce using rule 64 (factor -> MAS factor .)
+    MAYOR           reduce using rule 64 (factor -> MAS factor .)
+    MENOR           reduce using rule 64 (factor -> MAS factor .)
+    DIF             reduce using rule 64 (factor -> MAS factor .)
+    IGUALDAD        reduce using rule 64 (factor -> MAS factor .)
+    MAYORIG         reduce using rule 64 (factor -> MAS factor .)
+    MENORIG         reduce using rule 64 (factor -> MAS factor .)
+    PTOCOMA         reduce using rule 64 (factor -> MAS factor .)
+    RPAREN          reduce using rule 64 (factor -> MAS factor .)
+    COMA            reduce using rule 64 (factor -> MAS factor .)
 
-    factor                         shift and go to state 114
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
 
 state 99
 
-    (60) factor -> MAS factor .
+    (65) factor -> MENOS factor .
 
-    POR             reduce using rule 60 (factor -> MAS factor .)
-    DIV             reduce using rule 60 (factor -> MAS factor .)
-    MAS             reduce using rule 60 (factor -> MAS factor .)
-    MENOS           reduce using rule 60 (factor -> MAS factor .)
-    MAYOR           reduce using rule 60 (factor -> MAS factor .)
-    MENOR           reduce using rule 60 (factor -> MAS factor .)
-    DIF             reduce using rule 60 (factor -> MAS factor .)
-    IGUALDAD        reduce using rule 60 (factor -> MAS factor .)
-    MAYORIG         reduce using rule 60 (factor -> MAS factor .)
-    MENORIG         reduce using rule 60 (factor -> MAS factor .)
-    PTOCOMA         reduce using rule 60 (factor -> MAS factor .)
-    RPAREN          reduce using rule 60 (factor -> MAS factor .)
-    COMA            reduce using rule 60 (factor -> MAS factor .)
+    POR             reduce using rule 65 (factor -> MENOS factor .)
+    DIV             reduce using rule 65 (factor -> MENOS factor .)
+    MAS             reduce using rule 65 (factor -> MENOS factor .)
+    MENOS           reduce using rule 65 (factor -> MENOS factor .)
+    MAYOR           reduce using rule 65 (factor -> MENOS factor .)
+    MENOR           reduce using rule 65 (factor -> MENOS factor .)
+    DIF             reduce using rule 65 (factor -> MENOS factor .)
+    IGUALDAD        reduce using rule 65 (factor -> MENOS factor .)
+    MAYORIG         reduce using rule 65 (factor -> MENOS factor .)
+    MENORIG         reduce using rule 65 (factor -> MENOS factor .)
+    PTOCOMA         reduce using rule 65 (factor -> MENOS factor .)
+    RPAREN          reduce using rule 65 (factor -> MENOS factor .)
+    COMA            reduce using rule 65 (factor -> MENOS factor .)
 
 
 state 100
 
-    (61) factor -> MENOS factor .
-
-    POR             reduce using rule 61 (factor -> MENOS factor .)
-    DIV             reduce using rule 61 (factor -> MENOS factor .)
-    MAS             reduce using rule 61 (factor -> MENOS factor .)
-    MENOS           reduce using rule 61 (factor -> MENOS factor .)
-    MAYOR           reduce using rule 61 (factor -> MENOS factor .)
-    MENOR           reduce using rule 61 (factor -> MENOS factor .)
-    DIF             reduce using rule 61 (factor -> MENOS factor .)
-    IGUALDAD        reduce using rule 61 (factor -> MENOS factor .)
-    MAYORIG         reduce using rule 61 (factor -> MENOS factor .)
-    MENORIG         reduce using rule 61 (factor -> MENOS factor .)
-    PTOCOMA         reduce using rule 61 (factor -> MENOS factor .)
-    RPAREN          reduce using rule 61 (factor -> MENOS factor .)
-    COMA            reduce using rule 61 (factor -> MENOS factor .)
-
-
-state 101
-
-    (59) factor -> LPAREN expresion . RPAREN
+    (63) factor -> LPAREN expresion . RPAREN
 
     RPAREN          shift and go to state 115
 
 
+state 101
+
+    (46) llamada -> ID LPAREN lista_args RPAREN .
+
+    PTOCOMA         reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    POR             reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    DIV             reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    MAS             reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    MENOS           reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    MAYOR           reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    MENOR           reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    DIF             reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    IGUALDAD        reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    MAYORIG         reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    MENORIG         reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    RPAREN          reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+    COMA            reduce using rule 46 (llamada -> ID LPAREN lista_args RPAREN .)
+
+
 state 102
 
-    (42) llamada -> ID LPAREN lista_args RPAREN .
+    (48) lista_args -> lista_args COMA . expresion
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    PTOCOMA         reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    POR             reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    DIV             reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    MAS             reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    MENOS           reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    MAYOR           reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    MENOR           reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    DIF             reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    IGUALDAD        reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    MAYORIG         reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    MENORIG         reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    RPAREN          reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
-    COMA            reduce using rule 42 (llamada -> ID LPAREN lista_args RPAREN .)
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
+    expresion                      shift and go to state 116
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
 
 state 103
 
-    (44) lista_args -> lista_args COMA . expresion
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (42) condicion -> SI LPAREN expresion RPAREN . cuerpo PTOCOMA
+    (43) condicion -> SI LPAREN expresion RPAREN . cuerpo SINO cuerpo PTOCOMA
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
-
-    expresion                      shift and go to state 116
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
-
-state 104
-
-    (38) condicion -> SI LPAREN expresion RPAREN . cuerpo PTOCOMA
-    (39) condicion -> SI LPAREN expresion RPAREN . cuerpo SINO cuerpo PTOCOMA
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
-
-    LBRACE          shift and go to state 28
+    LBRACE          shift and go to state 29
 
     cuerpo                         shift and go to state 117
 
-state 105
+state 104
 
-    (40) ciclo -> MIENTRAS LPAREN expresion RPAREN . HAZ cuerpo PTOCOMA
+    (44) ciclo -> MIENTRAS LPAREN expresion RPAREN . HAZ cuerpo PTOCOMA
 
     HAZ             shift and go to state 118
 
 
-state 106
+state 105
 
-    (32) imprime -> ESCRIBE LPAREN lista_imprime RPAREN . PTOCOMA
+    (36) imprime -> ESCRIBE LPAREN lista_imprime RPAREN . PTOCOMA
 
     PTOCOMA         shift and go to state 119
 
 
-state 107
+state 106
 
-    (34) lista_imprime -> lista_imprime COMA . item_imprime
-    (35) item_imprime -> . expresion
-    (36) item_imprime -> . LETRERO
-    (37) item_imprime -> . LETRERO_KW
-    (45) expresion -> . exp
-    (46) expresion -> . exp OPREL exp
-    (53) exp -> . termino
-    (54) exp -> . exp MAS termino
-    (55) exp -> . exp MENOS termino
-    (56) termino -> . factor
-    (57) termino -> . termino POR factor
-    (58) termino -> . termino DIV factor
-    (59) factor -> . LPAREN expresion RPAREN
-    (60) factor -> . MAS factor
-    (61) factor -> . MENOS factor
-    (62) factor -> . llamada
-    (63) factor -> . ID
-    (64) factor -> . cte
-    (41) llamada -> . ID LPAREN RPAREN
-    (42) llamada -> . ID LPAREN lista_args RPAREN
-    (65) cte -> . CTE_ENT
-    (66) cte -> . CTE_FLOT
+    (38) lista_imprime -> lista_imprime COMA . item_imprime
+    (39) item_imprime -> . expresion
+    (40) item_imprime -> . LETRERO
+    (41) item_imprime -> . LETRERO_KW
+    (49) expresion -> . exp
+    (50) expresion -> . exp OPREL exp
+    (57) exp -> . termino
+    (58) exp -> . exp MAS termino
+    (59) exp -> . exp MENOS termino
+    (60) termino -> . factor
+    (61) termino -> . termino POR factor
+    (62) termino -> . termino DIV factor
+    (63) factor -> . LPAREN expresion RPAREN
+    (64) factor -> . MAS factor
+    (65) factor -> . MENOS factor
+    (66) factor -> . llamada
+    (67) factor -> . ID
+    (68) factor -> . cte
+    (45) llamada -> . ID LPAREN RPAREN
+    (46) llamada -> . ID LPAREN lista_args RPAREN
+    (69) cte -> . CTE_ENT
+    (70) cte -> . CTE_FLOT
 
-    LETRERO         shift and go to state 82
-    LETRERO_KW      shift and go to state 83
-    LPAREN          shift and go to state 69
-    MAS             shift and go to state 66
-    MENOS           shift and go to state 67
-    ID              shift and go to state 62
-    CTE_ENT         shift and go to state 72
-    CTE_FLOT        shift and go to state 73
+    LETRERO         shift and go to state 81
+    LETRERO_KW      shift and go to state 82
+    LPAREN          shift and go to state 68
+    MAS             shift and go to state 65
+    MENOS           shift and go to state 66
+    ID              shift and go to state 61
+    CTE_ENT         shift and go to state 71
+    CTE_FLOT        shift and go to state 72
 
     item_imprime                   shift and go to state 120
-    expresion                      shift and go to state 81
-    exp                            shift and go to state 64
-    termino                        shift and go to state 65
-    factor                         shift and go to state 68
-    llamada                        shift and go to state 70
-    cte                            shift and go to state 71
+    expresion                      shift and go to state 80
+    exp                            shift and go to state 63
+    termino                        shift and go to state 64
+    factor                         shift and go to state 67
+    llamada                        shift and go to state 69
+    cte                            shift and go to state 70
+
+state 107
+
+    (23) lista_params -> ID DOSPTOS tipo . pn_param
+    (25) pn_param -> .
+
+    COMA            reduce using rule 25 (pn_param -> .)
+    RPAREN          reduce using rule 25 (pn_param -> .)
+
+    pn_param                       shift and go to state 121
 
 state 108
 
-    (15) func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional . cuerpo RBRACE PTOCOMA
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE . vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA
+    (3) vars_opcional -> . VARS lista_decl_var
+    (4) vars_opcional -> . empty
+    (71) empty -> .
 
-    LBRACE          shift and go to state 28
+    VARS            shift and go to state 7
+    LBRACE          reduce using rule 71 (empty -> .)
 
-    cuerpo                         shift and go to state 121
+    vars_opcional                  shift and go to state 122
+    empty                          shift and go to state 8
 
 state 109
 
-    (21) lista_params -> lista_params COMA ID DOSPTOS . tipo
-    (11) tipo -> . ENTERO
-    (12) tipo -> . FLOTANTE
+    (24) lista_params -> lista_params COMA ID . DOSPTOS tipo pn_param
 
-    ENTERO          shift and go to state 15
-    FLOTANTE        shift and go to state 16
+    DOSPTOS         shift and go to state 123
 
-    tipo                           shift and go to state 122
 
 state 110
 
-    (46) expresion -> exp OPREL exp .
-    (54) exp -> exp . MAS termino
-    (55) exp -> exp . MENOS termino
+    (50) expresion -> exp OPREL exp .
+    (58) exp -> exp . MAS termino
+    (59) exp -> exp . MENOS termino
 
-    PTOCOMA         reduce using rule 46 (expresion -> exp OPREL exp .)
-    RPAREN          reduce using rule 46 (expresion -> exp OPREL exp .)
-    COMA            reduce using rule 46 (expresion -> exp OPREL exp .)
-    MAS             shift and go to state 89
-    MENOS           shift and go to state 90
+    PTOCOMA         reduce using rule 50 (expresion -> exp OPREL exp .)
+    RPAREN          reduce using rule 50 (expresion -> exp OPREL exp .)
+    COMA            reduce using rule 50 (expresion -> exp OPREL exp .)
+    MAS             shift and go to state 88
+    MENOS           shift and go to state 89
 
 
 state 111
 
-    (54) exp -> exp MAS termino .
-    (57) termino -> termino . POR factor
-    (58) termino -> termino . DIV factor
+    (58) exp -> exp MAS termino .
+    (61) termino -> termino . POR factor
+    (62) termino -> termino . DIV factor
 
-    MAS             reduce using rule 54 (exp -> exp MAS termino .)
-    MENOS           reduce using rule 54 (exp -> exp MAS termino .)
-    MAYOR           reduce using rule 54 (exp -> exp MAS termino .)
-    MENOR           reduce using rule 54 (exp -> exp MAS termino .)
-    DIF             reduce using rule 54 (exp -> exp MAS termino .)
-    IGUALDAD        reduce using rule 54 (exp -> exp MAS termino .)
-    MAYORIG         reduce using rule 54 (exp -> exp MAS termino .)
-    MENORIG         reduce using rule 54 (exp -> exp MAS termino .)
-    PTOCOMA         reduce using rule 54 (exp -> exp MAS termino .)
-    RPAREN          reduce using rule 54 (exp -> exp MAS termino .)
-    COMA            reduce using rule 54 (exp -> exp MAS termino .)
-    POR             shift and go to state 97
-    DIV             shift and go to state 98
+    MAS             reduce using rule 58 (exp -> exp MAS termino .)
+    MENOS           reduce using rule 58 (exp -> exp MAS termino .)
+    MAYOR           reduce using rule 58 (exp -> exp MAS termino .)
+    MENOR           reduce using rule 58 (exp -> exp MAS termino .)
+    DIF             reduce using rule 58 (exp -> exp MAS termino .)
+    IGUALDAD        reduce using rule 58 (exp -> exp MAS termino .)
+    MAYORIG         reduce using rule 58 (exp -> exp MAS termino .)
+    MENORIG         reduce using rule 58 (exp -> exp MAS termino .)
+    PTOCOMA         reduce using rule 58 (exp -> exp MAS termino .)
+    RPAREN          reduce using rule 58 (exp -> exp MAS termino .)
+    COMA            reduce using rule 58 (exp -> exp MAS termino .)
+    POR             shift and go to state 96
+    DIV             shift and go to state 97
 
 
 state 112
 
-    (55) exp -> exp MENOS termino .
-    (57) termino -> termino . POR factor
-    (58) termino -> termino . DIV factor
+    (59) exp -> exp MENOS termino .
+    (61) termino -> termino . POR factor
+    (62) termino -> termino . DIV factor
 
-    MAS             reduce using rule 55 (exp -> exp MENOS termino .)
-    MENOS           reduce using rule 55 (exp -> exp MENOS termino .)
-    MAYOR           reduce using rule 55 (exp -> exp MENOS termino .)
-    MENOR           reduce using rule 55 (exp -> exp MENOS termino .)
-    DIF             reduce using rule 55 (exp -> exp MENOS termino .)
-    IGUALDAD        reduce using rule 55 (exp -> exp MENOS termino .)
-    MAYORIG         reduce using rule 55 (exp -> exp MENOS termino .)
-    MENORIG         reduce using rule 55 (exp -> exp MENOS termino .)
-    PTOCOMA         reduce using rule 55 (exp -> exp MENOS termino .)
-    RPAREN          reduce using rule 55 (exp -> exp MENOS termino .)
-    COMA            reduce using rule 55 (exp -> exp MENOS termino .)
-    POR             shift and go to state 97
-    DIV             shift and go to state 98
+    MAS             reduce using rule 59 (exp -> exp MENOS termino .)
+    MENOS           reduce using rule 59 (exp -> exp MENOS termino .)
+    MAYOR           reduce using rule 59 (exp -> exp MENOS termino .)
+    MENOR           reduce using rule 59 (exp -> exp MENOS termino .)
+    DIF             reduce using rule 59 (exp -> exp MENOS termino .)
+    IGUALDAD        reduce using rule 59 (exp -> exp MENOS termino .)
+    MAYORIG         reduce using rule 59 (exp -> exp MENOS termino .)
+    MENORIG         reduce using rule 59 (exp -> exp MENOS termino .)
+    PTOCOMA         reduce using rule 59 (exp -> exp MENOS termino .)
+    RPAREN          reduce using rule 59 (exp -> exp MENOS termino .)
+    COMA            reduce using rule 59 (exp -> exp MENOS termino .)
+    POR             shift and go to state 96
+    DIV             shift and go to state 97
 
 
 state 113
 
-    (57) termino -> termino POR factor .
+    (61) termino -> termino POR factor .
 
-    POR             reduce using rule 57 (termino -> termino POR factor .)
-    DIV             reduce using rule 57 (termino -> termino POR factor .)
-    MAS             reduce using rule 57 (termino -> termino POR factor .)
-    MENOS           reduce using rule 57 (termino -> termino POR factor .)
-    MAYOR           reduce using rule 57 (termino -> termino POR factor .)
-    MENOR           reduce using rule 57 (termino -> termino POR factor .)
-    DIF             reduce using rule 57 (termino -> termino POR factor .)
-    IGUALDAD        reduce using rule 57 (termino -> termino POR factor .)
-    MAYORIG         reduce using rule 57 (termino -> termino POR factor .)
-    MENORIG         reduce using rule 57 (termino -> termino POR factor .)
-    PTOCOMA         reduce using rule 57 (termino -> termino POR factor .)
-    RPAREN          reduce using rule 57 (termino -> termino POR factor .)
-    COMA            reduce using rule 57 (termino -> termino POR factor .)
+    POR             reduce using rule 61 (termino -> termino POR factor .)
+    DIV             reduce using rule 61 (termino -> termino POR factor .)
+    MAS             reduce using rule 61 (termino -> termino POR factor .)
+    MENOS           reduce using rule 61 (termino -> termino POR factor .)
+    MAYOR           reduce using rule 61 (termino -> termino POR factor .)
+    MENOR           reduce using rule 61 (termino -> termino POR factor .)
+    DIF             reduce using rule 61 (termino -> termino POR factor .)
+    IGUALDAD        reduce using rule 61 (termino -> termino POR factor .)
+    MAYORIG         reduce using rule 61 (termino -> termino POR factor .)
+    MENORIG         reduce using rule 61 (termino -> termino POR factor .)
+    PTOCOMA         reduce using rule 61 (termino -> termino POR factor .)
+    RPAREN          reduce using rule 61 (termino -> termino POR factor .)
+    COMA            reduce using rule 61 (termino -> termino POR factor .)
 
 
 state 114
 
-    (58) termino -> termino DIV factor .
+    (62) termino -> termino DIV factor .
 
-    POR             reduce using rule 58 (termino -> termino DIV factor .)
-    DIV             reduce using rule 58 (termino -> termino DIV factor .)
-    MAS             reduce using rule 58 (termino -> termino DIV factor .)
-    MENOS           reduce using rule 58 (termino -> termino DIV factor .)
-    MAYOR           reduce using rule 58 (termino -> termino DIV factor .)
-    MENOR           reduce using rule 58 (termino -> termino DIV factor .)
-    DIF             reduce using rule 58 (termino -> termino DIV factor .)
-    IGUALDAD        reduce using rule 58 (termino -> termino DIV factor .)
-    MAYORIG         reduce using rule 58 (termino -> termino DIV factor .)
-    MENORIG         reduce using rule 58 (termino -> termino DIV factor .)
-    PTOCOMA         reduce using rule 58 (termino -> termino DIV factor .)
-    RPAREN          reduce using rule 58 (termino -> termino DIV factor .)
-    COMA            reduce using rule 58 (termino -> termino DIV factor .)
+    POR             reduce using rule 62 (termino -> termino DIV factor .)
+    DIV             reduce using rule 62 (termino -> termino DIV factor .)
+    MAS             reduce using rule 62 (termino -> termino DIV factor .)
+    MENOS           reduce using rule 62 (termino -> termino DIV factor .)
+    MAYOR           reduce using rule 62 (termino -> termino DIV factor .)
+    MENOR           reduce using rule 62 (termino -> termino DIV factor .)
+    DIF             reduce using rule 62 (termino -> termino DIV factor .)
+    IGUALDAD        reduce using rule 62 (termino -> termino DIV factor .)
+    MAYORIG         reduce using rule 62 (termino -> termino DIV factor .)
+    MENORIG         reduce using rule 62 (termino -> termino DIV factor .)
+    PTOCOMA         reduce using rule 62 (termino -> termino DIV factor .)
+    RPAREN          reduce using rule 62 (termino -> termino DIV factor .)
+    COMA            reduce using rule 62 (termino -> termino DIV factor .)
 
 
 state 115
 
-    (59) factor -> LPAREN expresion RPAREN .
+    (63) factor -> LPAREN expresion RPAREN .
 
-    POR             reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    DIV             reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    MAS             reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    MENOS           reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    MAYOR           reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    MENOR           reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    DIF             reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    IGUALDAD        reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    MAYORIG         reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    MENORIG         reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    PTOCOMA         reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    RPAREN          reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
-    COMA            reduce using rule 59 (factor -> LPAREN expresion RPAREN .)
+    POR             reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    DIV             reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    MAS             reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    MENOS           reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    MAYOR           reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    MENOR           reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    DIF             reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    IGUALDAD        reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    MAYORIG         reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    MENORIG         reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    PTOCOMA         reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
+    COMA            reduce using rule 63 (factor -> LPAREN expresion RPAREN .)
 
 
 state 116
 
-    (44) lista_args -> lista_args COMA expresion .
+    (48) lista_args -> lista_args COMA expresion .
 
-    RPAREN          reduce using rule 44 (lista_args -> lista_args COMA expresion .)
-    COMA            reduce using rule 44 (lista_args -> lista_args COMA expresion .)
+    RPAREN          reduce using rule 48 (lista_args -> lista_args COMA expresion .)
+    COMA            reduce using rule 48 (lista_args -> lista_args COMA expresion .)
 
 
 state 117
 
-    (38) condicion -> SI LPAREN expresion RPAREN cuerpo . PTOCOMA
-    (39) condicion -> SI LPAREN expresion RPAREN cuerpo . SINO cuerpo PTOCOMA
+    (42) condicion -> SI LPAREN expresion RPAREN cuerpo . PTOCOMA
+    (43) condicion -> SI LPAREN expresion RPAREN cuerpo . SINO cuerpo PTOCOMA
 
-    PTOCOMA         shift and go to state 123
-    SINO            shift and go to state 124
+    PTOCOMA         shift and go to state 124
+    SINO            shift and go to state 125
 
 
 state 118
 
-    (40) ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ . cuerpo PTOCOMA
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
+    (44) ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ . cuerpo PTOCOMA
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    LBRACE          shift and go to state 28
+    LBRACE          shift and go to state 29
 
-    cuerpo                         shift and go to state 125
+    cuerpo                         shift and go to state 126
 
 state 119
 
-    (32) imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .
+    (36) imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .
 
-    ID              reduce using rule 32 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
-    SI              reduce using rule 32 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
-    MIENTRAS        reduce using rule 32 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
-    ESCRIBE         reduce using rule 32 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
-    LBRACE          reduce using rule 32 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
-    RBRACE          reduce using rule 32 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
+    ID              reduce using rule 36 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
+    SI              reduce using rule 36 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
+    MIENTRAS        reduce using rule 36 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
+    ESCRIBE         reduce using rule 36 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
+    LBRACE          reduce using rule 36 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
+    RBRACE          reduce using rule 36 (imprime -> ESCRIBE LPAREN lista_imprime RPAREN PTOCOMA .)
 
 
 state 120
 
-    (34) lista_imprime -> lista_imprime COMA item_imprime .
+    (38) lista_imprime -> lista_imprime COMA item_imprime .
 
-    RPAREN          reduce using rule 34 (lista_imprime -> lista_imprime COMA item_imprime .)
-    COMA            reduce using rule 34 (lista_imprime -> lista_imprime COMA item_imprime .)
+    RPAREN          reduce using rule 38 (lista_imprime -> lista_imprime COMA item_imprime .)
+    COMA            reduce using rule 38 (lista_imprime -> lista_imprime COMA item_imprime .)
 
 
 state 121
 
-    (15) func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo . RBRACE PTOCOMA
+    (23) lista_params -> ID DOSPTOS tipo pn_param .
 
-    RBRACE          shift and go to state 126
+    COMA            reduce using rule 23 (lista_params -> ID DOSPTOS tipo pn_param .)
+    RPAREN          reduce using rule 23 (lista_params -> ID DOSPTOS tipo pn_param .)
 
 
 state 122
 
-    (21) lista_params -> lista_params COMA ID DOSPTOS tipo .
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional . cuerpo RBRACE pn_func_fin PTOCOMA
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    COMA            reduce using rule 21 (lista_params -> lista_params COMA ID DOSPTOS tipo .)
-    RPAREN          reduce using rule 21 (lista_params -> lista_params COMA ID DOSPTOS tipo .)
-
-
-state 123
-
-    (38) condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .
-
-    ID              reduce using rule 38 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
-    SI              reduce using rule 38 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
-    MIENTRAS        reduce using rule 38 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
-    ESCRIBE         reduce using rule 38 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
-    LBRACE          reduce using rule 38 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
-    RBRACE          reduce using rule 38 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
-
-
-state 124
-
-    (39) condicion -> SI LPAREN expresion RPAREN cuerpo SINO . cuerpo PTOCOMA
-    (22) cuerpo -> . LBRACE lista_estatuto RBRACE
-
-    LBRACE          shift and go to state 28
+    LBRACE          shift and go to state 29
 
     cuerpo                         shift and go to state 127
 
+state 123
+
+    (24) lista_params -> lista_params COMA ID DOSPTOS . tipo pn_param
+    (12) tipo -> . ENTERO
+    (13) tipo -> . FLOTANTE
+
+    ENTERO          shift and go to state 16
+    FLOTANTE        shift and go to state 17
+
+    tipo                           shift and go to state 128
+
+state 124
+
+    (42) condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .
+
+    ID              reduce using rule 42 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
+    SI              reduce using rule 42 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
+    MIENTRAS        reduce using rule 42 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
+    ESCRIBE         reduce using rule 42 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
+    LBRACE          reduce using rule 42 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
+    RBRACE          reduce using rule 42 (condicion -> SI LPAREN expresion RPAREN cuerpo PTOCOMA .)
+
+
 state 125
 
-    (40) ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo . PTOCOMA
+    (43) condicion -> SI LPAREN expresion RPAREN cuerpo SINO . cuerpo PTOCOMA
+    (26) cuerpo -> . LBRACE lista_estatuto RBRACE
 
-    PTOCOMA         shift and go to state 128
+    LBRACE          shift and go to state 29
 
+    cuerpo                         shift and go to state 129
 
 state 126
 
-    (15) func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE . PTOCOMA
-
-    PTOCOMA         shift and go to state 129
-
-
-state 127
-
-    (39) condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo . PTOCOMA
+    (44) ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo . PTOCOMA
 
     PTOCOMA         shift and go to state 130
 
 
+state 127
+
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo . RBRACE pn_func_fin PTOCOMA
+
+    RBRACE          shift and go to state 131
+
+
 state 128
 
-    (40) ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .
+    (24) lista_params -> lista_params COMA ID DOSPTOS tipo . pn_param
+    (25) pn_param -> .
 
-    ID              reduce using rule 40 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
-    SI              reduce using rule 40 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
-    MIENTRAS        reduce using rule 40 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
-    ESCRIBE         reduce using rule 40 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
-    LBRACE          reduce using rule 40 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
-    RBRACE          reduce using rule 40 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+    COMA            reduce using rule 25 (pn_param -> .)
+    RPAREN          reduce using rule 25 (pn_param -> .)
 
+    pn_param                       shift and go to state 132
 
 state 129
 
-    (15) func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA .
+    (43) condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo . PTOCOMA
 
-    NULA            reduce using rule 15 (func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA .)
-    ENTERO          reduce using rule 15 (func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA .)
-    FLOTANTE        reduce using rule 15 (func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA .)
-    INICIO          reduce using rule 15 (func_def -> tipo_retorno ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE PTOCOMA .)
+    PTOCOMA         shift and go to state 133
 
 
 state 130
 
-    (39) condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .
+    (44) ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .
 
-    ID              reduce using rule 39 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
-    SI              reduce using rule 39 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
-    MIENTRAS        reduce using rule 39 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
-    ESCRIBE         reduce using rule 39 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
-    LBRACE          reduce using rule 39 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
-    RBRACE          reduce using rule 39 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+    ID              reduce using rule 44 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+    SI              reduce using rule 44 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+    MIENTRAS        reduce using rule 44 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+    ESCRIBE         reduce using rule 44 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+    LBRACE          reduce using rule 44 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+    RBRACE          reduce using rule 44 (ciclo -> MIENTRAS LPAREN expresion RPAREN HAZ cuerpo PTOCOMA .)
+
+
+state 131
+
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE . pn_func_fin PTOCOMA
+    (18) pn_func_fin -> .
+
+    PTOCOMA         reduce using rule 18 (pn_func_fin -> .)
+
+    pn_func_fin                    shift and go to state 134
+
+state 132
+
+    (24) lista_params -> lista_params COMA ID DOSPTOS tipo pn_param .
+
+    COMA            reduce using rule 24 (lista_params -> lista_params COMA ID DOSPTOS tipo pn_param .)
+    RPAREN          reduce using rule 24 (lista_params -> lista_params COMA ID DOSPTOS tipo pn_param .)
+
+
+state 133
+
+    (43) condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .
+
+    ID              reduce using rule 43 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+    SI              reduce using rule 43 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+    MIENTRAS        reduce using rule 43 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+    ESCRIBE         reduce using rule 43 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+    LBRACE          reduce using rule 43 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+    RBRACE          reduce using rule 43 (condicion -> SI LPAREN expresion RPAREN cuerpo SINO cuerpo PTOCOMA .)
+
+
+state 134
+
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin . PTOCOMA
+
+    PTOCOMA         shift and go to state 135
+
+
+state 135
+
+    (16) func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA .
+
+    NULA            reduce using rule 16 (func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA .)
+    ENTERO          reduce using rule 16 (func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA .)
+    FLOTANTE        reduce using rule 16 (func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA .)
+    INICIO          reduce using rule 16 (func_def -> tipo_retorno pn_func_inicio ID LPAREN params RPAREN LBRACE vars_opcional cuerpo RBRACE pn_func_fin PTOCOMA .)
 
