@@ -100,10 +100,11 @@ def t_ID(t):
     return t
 
 # Token para LETRERO (string literal, tu extensión)
+
 def t_LETRERO(t):
     r'\"[^"\n]*\"'
     # Quita las comillas dobles del inicio y el final
-    t.value = t.value[1:-1]
+    # t.value = t.value[1:-1]  <--- ¡COMENTA O BORRA ESTA LÍNEA!
     return t
 
 # Token para contar números de línea
